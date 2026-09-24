@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>2024&ndash;25 NBA Player Stat Dashboard &mdash; Nasir Pullen</title>
+    <meta name="description" content="A PostgreSQL-backed analysis workflow and Looker Studio dashboard for spotting player prop bets, with deeper statistical work in R.">
+    <meta name="author" content="Nasir Pullen">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="2024&ndash;25 NBA Player Stat Dashboard &mdash; Nasir Pullen">
+    <meta property="og:description" content="A PostgreSQL-backed analysis workflow and Looker Studio dashboard for spotting player prop bets, with deeper statistical work in R.">
+    <meta property="og:url" content="https://PullenN9163.github.io/projects/nba-player-dashboard.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="2024&ndash;25 NBA Player Stat Dashboard &mdash; Nasir Pullen">
+    <meta name="twitter:description" content="A PostgreSQL-backed analysis workflow and Looker Studio dashboard for spotting player prop bets, with deeper statistical work in R.">
+
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/flaticon.min.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-5.14.0.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/slick.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+</head>
+
+<body>
+
+    <!-- header area -->
+    <header class="main-header menu-absolute">
+        <div class="header-upper">
+            <div class="container container-1620 clearfix">
+                <div class="header-inner rel d-flex align-items-center">
+                    <div class="logo-outer">
+                        <div class="logo"><a href="../index.html" class="site-wordmark">Nas<span>.</span></a></div>
+                    </div>
+                    <div class="nav-outer clearfix mx-auto">
+                        <nav class="main-menu navbar-expand-lg">
+                            <div class="navbar-header">
+                                <div class="mobile-logo my-15">
+                                    <a href="../index.html" class="site-wordmark">Nas<span>.</span></a>
+                                </div>
+                                <button type="button" class="navbar-toggle me-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li class="current"><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="menu-btns">
+                        <a href="mailto:pullennasir@gmail.com" class="theme-btn header-cta">Get In Touch <i class="far fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header area end -->
+
+    <!-- Page Banner Start -->
+    <section class="page-banner-area pt-200 rpt-140 pb-100 rpb-60 rel z-1 text-center">
+        <div class="container">
+            <div class="banner-inner text-white">
+                <h1 class="page-title wow fadeInUp delay-0-2s">2024&ndash;25 NBA Player Stat Dashboard</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+                        <li class="breadcrumb-item active">2024&ndash;25 NBA Player Stat Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Page Banner End -->
+
+    <!-- Project Details start -->
+    <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
+        <div class="container">
+                <div class="projects-details-image mb-50 wow fadeInUp delay-0-2s">
+                    <img src="../assets/images/projects/nba-01.png" alt="2024&ndash;25 NBA Player Stat Dashboard">
+                </div>
+            <div class="row gap-60">
+                <div class="col-lg-8">
+                    <div class="project-details-content wow fadeInUp delay-0-2s">
+                        <span class="sub-title">Analytics &amp; Visualization</span>
+                        <p class="big-letter">A PostgreSQL-backed analysis workflow and Looker Studio dashboard for spotting player prop bets, with deeper statistical work in R.</p>
+                        <p>The idea for this project came from my favorite sport. I love watching and betting on the NBA, and I wanted to demonstrate analysis and visualization skills on a topic I&rsquo;m actually passionate about.</p>
+                            <p>The goal was to visualize player data to identify potential bets based on specific statistics &mdash; for example, taking the over on 20 points for Shai given a 30 points-per-game average. I gathered a full player dataset and loaded it into my PostgreSQL database, then connected that database to Google Looker Studio for the interactive dashboard. I used R for the more advanced analysis, like comparing points-per-game distribution in the regular season against the playoffs.</p>
+                            <h3>Regular season vs. playoff PPG distribution</h3>
+                            <div class="code-block"><span class="code-lang">R</span><pre><code>library(ggplot2)
+regular_season &lt;- read.csv("/Volumes/MySQL_Server/NBA Data/regular_season_cleaned.csv")
+playoff        &lt;- read.csv("/Volumes/MySQL_Server/NBA Data/playoff_cleaned.csv")
+
+# Compares Regular Season vs Playoffs
+ggplot() +
+  geom_histogram(aes(x = regular_season$PTS), fill="blue", alpha=0.5, bins=20) +
+  geom_histogram(aes(x = playoff$PTS), fill="red", alpha=0.5, bins=20) +
+  labs(title="Regular Season vs Playoff PPG Distribution",
+       x="Points Per Game", y="Frequency")</code></pre></div>
+                            <h3>Top 10 players by total contribution (P+R+A)</h3>
+                            <div class="code-block"><span class="code-lang">R</span><pre><code>nba %&gt;%
+  arrange(desc(`P+R+A`)) %&gt;%        # Sort by total contribution
+  slice_head(n = 10) %&gt;%            # Take top 10 players
+  ggplot(aes(x = reorder(NAME, `P+R+A`), y = `P+R+A`, fill = TEAM)) +
+  geom_col(show.legend = FALSE) +
+  coord_flip() +
+  labs(
+    title = "Top 10 Players by Total Contribution (P+R+A)",
+    subtitle = "2024-25 NBA Regular Season",
+    x = "Player",
+    y = "Points + Rebounds + Assists"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(size = 11),
+    axis.text.y = element_text(face = "bold")
+  )</code></pre></div>
+                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/nba-01.png" alt="Looker Studio player dashboard" loading="lazy"><figcaption>Looker Studio player dashboard</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/nba-02.png" alt="Player comparison and stat breakdown view" loading="lazy"><figcaption>Player comparison and stat breakdown view</figcaption></figure></div></div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeInUp delay-0-4s">
+                    <div class="project-details-info rmb-55">
+                            <div class="pd-info-item">
+                                <span>Role</span>
+                                <h5>Solo project</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Type</span>
+                                <h5>Personal analytics</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Timeline</span>
+                                <h5>2025</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Approach</span>
+                                <h5>Database-backed BI + R analysis</h5>
+                            </div>
+                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>PostgreSQL</span><span>Python</span><span>Looker Studio</span><span>R</span><span>ggplot2</span></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-nav mt-70">
+                <a href="catalog-team-data-hub.html" class="read-more"><i class="far fa-angle-left"></i> Catalog Team Data Hub</a>
+                <a href="../projects.html" class="read-more">All projects</a>
+                <a href="ics-data-pipeline.html" class="read-more">Industrial Control System (ICS) Data Pipeline <i class="far fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Project Details end -->
+
+    <!-- footer area start -->
+    <footer class="main-footer rel z-1">
+        <div class="footer-top-wrap bgc-black pt-100 pb-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="footer-widget widget_about wow fadeInUp delay-0-2s">
+                            <a href="../index.html" class="site-wordmark footer-wordmark">Nas<span>.</span></a>
+                            <p class="mt-20">Data analyst and platform builder in Philadelphia, turning manual workflows into systems people can rely on.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget widget_nav_menu wow fadeInUp delay-0-4s">
+                            <h6 class="footer-title">Explore</h6>
+                            <ul>
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-widget widget_contact_info wow fadeInUp delay-0-6s">
+                            <h6 class="footer-title">Get In Touch</h6>
+                            <ul>
+                                <li><i class="far fa-map-marker-alt"></i> Philadelphia, PA</li>
+                                <li><i class="far fa-envelope"></i> <a href="mailto:pullennasir@gmail.com">pullennasir@gmail.com</a></li>
+                                <li><i class="far fa-phone"></i> <a href="tel:+16092842409">609-284-2409</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom pt-20 pb-5 rpt-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="copyright-text">
+                            <p>&copy; 2026 Nasir Pullen. Built and maintained by me.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <ul class="footer-bottom-nav">
+                            <li><a href="https://www.linkedin.com/in/naspullen" target="_blank" rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://github.com/PullenN9163" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="mailto:pullennasir@gmail.com">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="scroll-top scroll-to-target" data-target="html"><span class="fas fa-angle-double-up"></span></button>
+            </div>
+            <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+    </footer>
+    <!-- footer area end -->
+
+    <!-- Preloader -->
+    <div class="preloader"><div class="custom-loader"></div></div>
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/appear.min.js"></script>
+    <script src="../assets/js/slick.min.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
+    <script src="../assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="../assets/js/isotope.pkgd.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+
+</body>
+
+</html>

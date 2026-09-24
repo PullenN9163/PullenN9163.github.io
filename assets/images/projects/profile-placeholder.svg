@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Nasir Pullen">
+  <defs>
+    <linearGradient id="np-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1c1c1c"/>
+      <stop offset="100%" stop-color="#2e2e2e"/>
+    </linearGradient>
+    <linearGradient id="np-ink" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c9f31d"/>
+      <stop offset="100%" stop-color="#9fd400"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#np-bg)"/>
+
+  <!-- subtle grid, echoing the theme's bg-lines -->
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <line x1="120" y1="0" x2="120" y2="600"/>
+    <line x1="240" y1="0" x2="240" y2="600"/>
+    <line x1="360" y1="0" x2="360" y2="600"/>
+    <line x1="480" y1="0" x2="480" y2="600"/>
+  </g>
+
+  <circle cx="300" cy="300" r="212" fill="none" stroke="#c9f31d" stroke-opacity="0.22" stroke-width="2"/>
+
+  <text x="300" y="300" text-anchor="middle" dominant-baseline="central"
+        font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="200" font-weight="800" letter-spacing="-6" fill="url(#np-ink)">NP</text>
+
+  <text x="300" y="432" text-anchor="middle"
+        font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="26" font-weight="600" letter-spacing="7" fill="#ffffff" fill-opacity="0.55">NASIR PULLEN</text>
+</svg>
