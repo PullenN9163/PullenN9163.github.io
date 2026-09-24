@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Catalog Team Data Hub &mdash; Nasir Pullen</title>
+    <meta name="description" content="An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.">
+    <meta name="author" content="Nasir Pullen">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Catalog Team Data Hub &mdash; Nasir Pullen">
+    <meta property="og:description" content="An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.">
+    <meta property="og:url" content="https://PullenN9163.github.io/projects/catalog-team-data-hub.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Catalog Team Data Hub &mdash; Nasir Pullen">
+    <meta name="twitter:description" content="An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.">
+
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/flaticon.min.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-5.14.0.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/slick.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+</head>
+
+<body>
+
+    <!-- header area -->
+    <header class="main-header menu-absolute">
+        <div class="header-upper">
+            <div class="container container-1620 clearfix">
+                <div class="header-inner rel d-flex align-items-center">
+                    <div class="logo-outer">
+                        <div class="logo"><a href="../index.html" class="site-wordmark">Nas<span>.</span></a></div>
+                    </div>
+                    <div class="nav-outer clearfix mx-auto">
+                        <nav class="main-menu navbar-expand-lg">
+                            <div class="navbar-header">
+                                <div class="mobile-logo my-15">
+                                    <a href="../index.html" class="site-wordmark">Nas<span>.</span></a>
+                                </div>
+                                <button type="button" class="navbar-toggle me-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li class="current"><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="menu-btns">
+                        <a href="mailto:pullennasir@gmail.com" class="theme-btn header-cta">Get In Touch <i class="far fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header area end -->
+
+    <!-- Page Banner Start -->
+    <section class="page-banner-area pt-200 rpt-140 pb-100 rpb-60 rel z-1 text-center">
+        <div class="container">
+            <div class="banner-inner text-white">
+                <h1 class="page-title wow fadeInUp delay-0-2s">Catalog Team Data Hub</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+                        <li class="breadcrumb-item active">Catalog Team Data Hub</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Page Banner End -->
+
+    <!-- Project Details start -->
+    <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
+        <div class="container">
+                <div class="projects-details-image mb-50 wow fadeInUp delay-0-2s">
+                    <img src="../assets/images/projects/datahub-01.png" alt="Catalog Team Data Hub">
+                </div>
+            <div class="row gap-60">
+                <div class="col-lg-8">
+                    <div class="project-details-content wow fadeInUp delay-0-2s">
+                        <span class="sub-title">Internal Data Platform</span>
+                        <p class="big-letter">An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.</p>
+                        <p>The Catalog Team Data Hub is an internal data platform I designed and continue to build at Neta Scientific. Before it, most supplier catalog work happened in Excel with Ablebits: importing files one at a time, cleaning columns, running lookups, matching records, and passing updated spreadsheets between people. That process worked, but it was easy to lose context, repeat the same cleanup, or make a change without a clear record of what happened.</p>
+                            <h3>Centralizing the data</h3>
+                            <p>I built the Data Hub to bring those workflows into one place. PostgreSQL serves as the centralized catalog database, while staged supplier imports validate incoming files before anything is allowed into the main catalog. Each import keeps its history, separates invalid or questionable records for review, and gives the team a clearer path from the supplier&rsquo;s original file to the data we eventually use.</p>
+                            <h3>Replacing the spreadsheet loop</h3>
+                            <p>The browser workspaces are the part that most directly replaces the old Excel workflow. They let the team open large supplier datasets, filter and review rows, make bulk edits, and run database matching without moving between separate files and tools. Matching can use configurable keys and mapped columns, and the preview step makes it possible to review the result before applying changes. Once the data is ready, export workflows turn the cleaned and matched records back into the formats needed for customer updates, pricing work, and catalog operations.</p>
+                            <h3>Making the system explain itself</h3>
+                            <p>I also wanted the platform to explain what it was doing after an import finished. It tracks import activity, scheduled jobs, application health, API performance, and database activity, with audit logging for changes that need to be traced later. Background job scheduling handles recurring work, and the monitoring views make it easier to spot a failed job or slow endpoint without digging through multiple systems.</p>
+                            <h3>Deployment and what&rsquo;s next</h3>
+                            <p>The application runs in Docker, which keeps development and deployment consistent as it moves toward secure multi-user hosting. I am actively working with IT on Microsoft Graph integration, Microsoft Entra SSO, and VPN-based private access. Those infrastructure pieces are still being implemented, along with the longer-term plan to move the platform into an Azure-hosted environment.</p>
+                            <h3>Why this one matters to me</h3>
+                            <p>What makes this one of my favorite projects is that it sits between data engineering, platform development, and day-to-day catalog work. I can see the old spreadsheet process, understand where it breaks down, and then design the database, API, interface, and operational tooling needed to replace it with something the team can keep building on.</p>
+                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/datahub-01.png" alt="Home dashboard and registry overview" loading="lazy"><figcaption>Home dashboard and registry overview</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/datahub-08.png" alt="Workspace editor with sanitization results" loading="lazy"><figcaption>Workspace editor with sanitization results</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-4s"><img src="../assets/images/projects/datahub-07.png" alt="Workspace column profiling view" loading="lazy"><figcaption>Workspace column profiling view</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/datahub-09.png" alt="Match-to-database preview and merge workflow" loading="lazy"><figcaption>Match-to-database preview and merge workflow</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/datahub-03.png" alt="Export configuration workflow" loading="lazy"><figcaption>Export configuration workflow</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-4s"><img src="../assets/images/projects/datahub-05.png" alt="Server and Data Hub performance dashboards" loading="lazy"><figcaption>Server and Data Hub performance dashboards</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/datahub-06.png" alt="Learning center modules" loading="lazy"><figcaption>Learning center modules</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/datahub-04.png" alt="Bulk async NPT Excel file editor" loading="lazy"><figcaption>Bulk async NPT Excel file editor</figcaption></figure></div></div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeInUp delay-0-4s">
+                    <div class="project-details-info rmb-55">
+                            <div class="pd-info-item">
+                                <span>Role</span>
+                                <h5>Designer &amp; sole developer</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Organization</span>
+                                <h5>Neta Scientific</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Timeline</span>
+                                <h5>2025 &ndash; ongoing</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Scale</span>
+                                <h5>~900k+ row datasets</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Status</span>
+                                <h5>In active development</h5>
+                            </div>
+                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>PostgreSQL</span><span>Python</span><span>FastAPI</span><span>AG Grid</span><span>Docker</span><span>Nginx</span><span>ETL</span></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-nav mt-70">
+                <a href="drexel-personality-system.html" class="read-more"><i class="far fa-angle-left"></i> Drexel Personality System</a>
+                <a href="../projects.html" class="read-more">All projects</a>
+                <a href="nba-player-dashboard.html" class="read-more">2024&ndash;25 NBA Player Stat Dashboard <i class="far fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Project Details end -->
+
+    <!-- footer area start -->
+    <footer class="main-footer rel z-1">
+        <div class="footer-top-wrap bgc-black pt-100 pb-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="footer-widget widget_about wow fadeInUp delay-0-2s">
+                            <a href="../index.html" class="site-wordmark footer-wordmark">Nas<span>.</span></a>
+                            <p class="mt-20">Data analyst and platform builder in Philadelphia, turning manual workflows into systems people can rely on.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget widget_nav_menu wow fadeInUp delay-0-4s">
+                            <h6 class="footer-title">Explore</h6>
+                            <ul>
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-widget widget_contact_info wow fadeInUp delay-0-6s">
+                            <h6 class="footer-title">Get In Touch</h6>
+                            <ul>
+                                <li><i class="far fa-map-marker-alt"></i> Philadelphia, PA</li>
+                                <li><i class="far fa-envelope"></i> <a href="mailto:pullennasir@gmail.com">pullennasir@gmail.com</a></li>
+                                <li><i class="far fa-phone"></i> <a href="tel:+16092842409">609-284-2409</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom pt-20 pb-5 rpt-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="copyright-text">
+                            <p>&copy; 2026 Nasir Pullen. Built and maintained by me.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <ul class="footer-bottom-nav">
+                            <li><a href="https://www.linkedin.com/in/naspullen" target="_blank" rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://github.com/PullenN9163" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="mailto:pullennasir@gmail.com">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="scroll-top scroll-to-target" data-target="html"><span class="fas fa-angle-double-up"></span></button>
+            </div>
+            <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+    </footer>
+    <!-- footer area end -->
+
+    <!-- Preloader -->
+    <div class="preloader"><div class="custom-loader"></div></div>
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/appear.min.js"></script>
+    <script src="../assets/js/slick.min.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
+    <script src="../assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="../assets/js/isotope.pkgd.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+
+</body>
+
+</html>

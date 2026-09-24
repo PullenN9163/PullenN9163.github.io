@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Industrial Control System (ICS) Data Pipeline &mdash; Nasir Pullen</title>
+    <meta name="description" content="A centralized database and Tableau story that turns raw Shodan ICS scan data into a usable risk assessment for ethical hackers.">
+    <meta name="author" content="Nasir Pullen">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Industrial Control System (ICS) Data Pipeline &mdash; Nasir Pullen">
+    <meta property="og:description" content="A centralized database and Tableau story that turns raw Shodan ICS scan data into a usable risk assessment for ethical hackers.">
+    <meta property="og:url" content="https://PullenN9163.github.io/projects/ics-data-pipeline.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Industrial Control System (ICS) Data Pipeline &mdash; Nasir Pullen">
+    <meta name="twitter:description" content="A centralized database and Tableau story that turns raw Shodan ICS scan data into a usable risk assessment for ethical hackers.">
+
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/flaticon.min.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-5.14.0.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/slick.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/custom.css">
+</head>
+
+<body>
+
+    <!-- header area -->
+    <header class="main-header menu-absolute">
+        <div class="header-upper">
+            <div class="container container-1620 clearfix">
+                <div class="header-inner rel d-flex align-items-center">
+                    <div class="logo-outer">
+                        <div class="logo"><a href="../index.html" class="site-wordmark">Nas<span>.</span></a></div>
+                    </div>
+                    <div class="nav-outer clearfix mx-auto">
+                        <nav class="main-menu navbar-expand-lg">
+                            <div class="navbar-header">
+                                <div class="mobile-logo my-15">
+                                    <a href="../index.html" class="site-wordmark">Nas<span>.</span></a>
+                                </div>
+                                <button type="button" class="navbar-toggle me-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li class="current"><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="menu-btns">
+                        <a href="mailto:pullennasir@gmail.com" class="theme-btn header-cta">Get In Touch <i class="far fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header area end -->
+
+    <!-- Page Banner Start -->
+    <section class="page-banner-area pt-200 rpt-140 pb-100 rpb-60 rel z-1 text-center">
+        <div class="container">
+            <div class="banner-inner text-white">
+                <h1 class="page-title wow fadeInUp delay-0-2s">Industrial Control System (ICS) Data Pipeline</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+                        <li class="breadcrumb-item active">Industrial Control System (ICS) Data Pipeline</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Page Banner End -->
+
+    <!-- Project Details start -->
+    <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
+        <div class="container">
+            <div class="row gap-60">
+                <div class="col-lg-8">
+                    <div class="project-details-content wow fadeInUp delay-0-2s">
+                        <span class="sub-title">Security Data Analysis</span>
+                        <p class="big-letter">A centralized database and Tableau story that turns raw Shodan ICS scan data into a usable risk assessment for ethical hackers.</p>
+                        <h3>Objective</h3>
+                            <p>Current ethical hacking practices for gathering and analyzing Industrial Control System data are hard to comprehend and time-consuming. Having one centralized place to analyze and visualize this data would help ethical hackers assess which organizations&rsquo; ICS systems are most at risk, and the best way to approach them.</p>
+                            <h3>Scope</h3>
+                            <ul class="list-style-one"><li>Create a new and efficient ethical hacking practice for interpreting raw Shodan data</li><li>Develop a centralized database to house Shodan data</li><li>Create a way to visualize Shodan data for specific ICS types</li></ul>
+                            <h3>Key tasks</h3>
+                            <ul class="list-style-one"><li>Downloaded Shodan data for all ICS ports (47808, 502, 102, 44818)</li><li>Reduced the data in Excel to only the relevant fields (IP, location, object name, and similar)</li><li>Imported the cleaned data into a SQL database</li><li>Developed queries to pull the data ethical hackers would need</li><li>Visualized query results in Tableau</li><li>Analyzed the results to conduct a risk assessment, then published a Tableau story</li></ul>
+                            <h3>Representative queries</h3>
+                            <div class="query-table"><table><thead><tr><th>Description</th><th>Query</th></tr></thead><tbody><tr><td>Show all Shodan entries of products from Obvious</td><td><pre><code>SELECT Model_name, Vendor_name
+FROM ShodanResults
+WHERE Vendor_name = 'Obvious';</code></pre></td></tr><tr><td>Number of entries per organization for BACnet systems</td><td><pre><code>SELECT COUNT(*) AS Number_of_Entries, ORG, Address_ll
+FROM ShodanResults
+GROUP BY ORG, Address_ll;</code></pre></td></tr><tr><td>Number of entries per organization for Modbus systems</td><td><pre><code>SELECT COUNT(*) AS Number_of_Entries, ORG, City, State, Country
+FROM ShodanResults
+WHERE Port = 502
+GROUP BY ORG, City, State, Country, Port;</code></pre></td></tr><tr><td>Total entries per ICS type across all ports</td><td><pre><code>SELECT COUNT(*) AS Total
+FROM shodanresults
+WHERE country LIKE '%United States%'
+GROUP BY org
+ORDER BY COUNT(*) DESC;</code></pre></td></tr></tbody></table></div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeInUp delay-0-4s">
+                    <div class="project-details-info rmb-55">
+                            <div class="pd-info-item">
+                                <span>Role</span>
+                                <h5>Solo project</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Type</span>
+                                <h5>Academic / security research</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Tools</span>
+                                <h5>Shodan, Oracle SQL, Tableau</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Output</span>
+                                <h5>Published Tableau story</h5>
+                            </div>
+                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>Shodan</span><span>Oracle SQL Developer</span><span>Tableau</span><span>Excel</span></div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-nav mt-70">
+                <a href="nba-player-dashboard.html" class="read-more"><i class="far fa-angle-left"></i> 2024&ndash;25 NBA Player Stat Dashboard</a>
+                <a href="../projects.html" class="read-more">All projects</a>
+                <a href="youtube-viral-prediction.html" class="read-more">YouTube Viral Video Prediction <i class="far fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Project Details end -->
+
+    <!-- footer area start -->
+    <footer class="main-footer rel z-1">
+        <div class="footer-top-wrap bgc-black pt-100 pb-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="footer-widget widget_about wow fadeInUp delay-0-2s">
+                            <a href="../index.html" class="site-wordmark footer-wordmark">Nas<span>.</span></a>
+                            <p class="mt-20">Data analyst and platform builder in Philadelphia, turning manual workflows into systems people can rely on.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget widget_nav_menu wow fadeInUp delay-0-4s">
+                            <h6 class="footer-title">Explore</h6>
+                            <ul>
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-widget widget_contact_info wow fadeInUp delay-0-6s">
+                            <h6 class="footer-title">Get In Touch</h6>
+                            <ul>
+                                <li><i class="far fa-map-marker-alt"></i> Philadelphia, PA</li>
+                                <li><i class="far fa-envelope"></i> <a href="mailto:pullennasir@gmail.com">pullennasir@gmail.com</a></li>
+                                <li><i class="far fa-phone"></i> <a href="tel:+16092842409">609-284-2409</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom pt-20 pb-5 rpt-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="copyright-text">
+                            <p>&copy; 2026 Nasir Pullen. Built and maintained by me.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <ul class="footer-bottom-nav">
+                            <li><a href="https://www.linkedin.com/in/naspullen" target="_blank" rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://github.com/PullenN9163" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="mailto:pullennasir@gmail.com">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="scroll-top scroll-to-target" data-target="html"><span class="fas fa-angle-double-up"></span></button>
+            </div>
+            <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+    </footer>
+    <!-- footer area end -->
+
+    <!-- Preloader -->
+    <div class="preloader"><div class="custom-loader"></div></div>
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/appear.min.js"></script>
+    <script src="../assets/js/slick.min.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
+    <script src="../assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="../assets/js/isotope.pkgd.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+
+</body>
+
+</html>
