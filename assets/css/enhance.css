@@ -1,0 +1,436 @@
+/* ------------------------------------------------------------------
+   Motion + interaction layer. Pairs with assets/js/enhance.js.
+   Loaded after custom.css. Styles that change how the page looks
+   without JS are scoped to .np-js so the no-JS page stays intact.
+   ------------------------------------------------------------------ */
+
+:root {
+  --np-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --np-ease: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.np-sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap; border: 0;
+}
+
+/* ---------- intro loader ---------- */
+.np-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000000;
+  overflow: hidden;
+  /* Failsafe: never trap the page if the script doesn't run. */
+  animation: npLoaderFailsafe 0s linear 3s forwards;
+}
+.np-no-loader .np-loader { display: none; }
+@keyframes npLoaderFailsafe { to { visibility: hidden; opacity: 0; } }
+
+.np-loader-cols { position: absolute; inset: 0; display: flex; }
+.np-loader-cols span {
+  flex: 1;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  transition: transform 0.85s var(--np-ease);
+}
+.np-loader-cols span:nth-child(1) { background: #0b0b0b; }
+.np-loader-cols span:nth-child(2) { background: #0f0f0f; transition-delay: 0.05s; }
+.np-loader-cols span:nth-child(3) { background: #131313; transition-delay: 0.10s; }
+.np-loader-cols span:nth-child(4) { background: #171717; transition-delay: 0.15s; }
+.np-loader-cols span:nth-child(5) { background: #1b1b1b; transition-delay: 0.20s; border-right: 0; }
+.np-loader.is-done .np-loader-cols span { transform: translateY(-101%); }
+
+.np-loader-meta {
+  position: absolute;
+  top: 5vh; left: 4vw; right: 4vw;
+  display: flex;
+  justify-content: space-between;
+  font: 500 13px/1 var(--np-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+.np-loader-meta b { color: var(--np-accent); font-weight: 500; }
+.np-loader-count {
+  position: absolute;
+  left: 4vw; bottom: 6vh;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(96px, 18vw, 240px);
+  font-weight: 700;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+.np-loader-count::after {
+  content: "%";
+  margin-left: 0.08em;
+  font-size: 0.24em;
+  letter-spacing: 0;
+  color: var(--np-accent);
+}
+.np-loader-bar {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--np-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+.np-loader-meta,
+.np-loader-count,
+.np-loader-bar { transition: opacity 0.35s ease, transform 0.45s ease; }
+.np-loader.is-done .np-loader-meta,
+.np-loader.is-done .np-loader-count,
+.np-loader.is-done .np-loader-bar { opacity: 0; }
+.np-loader.is-done .np-loader-count { transform: translateY(-30px); }
+
+/* ---------- hero dither field ---------- */
+.np-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  image-rendering: pixelated;
+  opacity: 0.5;
+  -webkit-mask-image: radial-gradient(ellipse 70% 75% at 68% 45%, #000 30%, transparent 78%);
+          mask-image: radial-gradient(ellipse 70% 75% at 68% 45%, #000 30%, transparent 78%);
+}
+
+/* ---------- project cards: browser chrome + tilt ---------- */
+.np-chrome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #1a1a1a;
+  border-bottom: 1px solid var(--np-border);
+  font: 12px/1 var(--np-mono);
+  color: rgba(255, 255, 255, 0.45);
+}
+.np-dots { display: inline-flex; gap: 6px; flex-shrink: 0; }
+.np-dots i {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  transition: background-color 0.3s ease;
+}
+.project-card:hover .np-dots i:nth-child(1),
+.np-code-window .np-dots i:nth-child(1),
+.np-terminal .np-dots i:nth-child(1) { background: #ff5f57; }
+.project-card:hover .np-dots i:nth-child(2),
+.np-code-window .np-dots i:nth-child(2),
+.np-terminal .np-dots i:nth-child(2) { background: #febc2e; }
+.project-card:hover .np-dots i:nth-child(3),
+.np-code-window .np-dots i:nth-child(3),
+.np-terminal .np-dots i:nth-child(3) { background: #28c840; }
+.np-url {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.np-url b { font-weight: 400; color: var(--np-accent); }
+
+.project-card { position: relative; }
+.project-card.np-tilt {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+.project-card.np-tilt:hover {
+  --lift: -6px;
+  transition: transform 0.15s linear, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.project-card.np-tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(460px circle at var(--mx, 50%) var(--my, 0%), rgba(201, 243, 29, 0.10), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.project-card.np-tilt:hover::after { opacity: 1; }
+.np-still .project-card.np-tilt { transform: translateY(var(--lift, 0px)); }
+.np-still .project-card.np-tilt::after { display: none; }
+
+/* ---------- toolkit marquee ---------- */
+.np-marquee-band {
+  position: relative;
+  z-index: 1;
+  padding: 46px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--np-border);
+  border-bottom: 1px solid var(--np-border);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.np-marquee { display: flex; overflow: hidden; user-select: none; }
+.np-marquee + .np-marquee { margin-top: 10px; }
+.np-marquee-inner {
+  display: flex;
+  flex-shrink: 0;
+  animation: npMarquee var(--np-marquee-dur, 60s) linear infinite;
+}
+.np-marquee-reverse .np-marquee-inner { animation-direction: reverse; }
+.np-marquee:hover .np-marquee-inner,
+.np-still .np-marquee-inner { animation-play-state: paused; }
+.np-marquee-group { display: flex; flex-shrink: 0; align-items: center; margin: 0; padding: 0; list-style: none; }
+.np-marquee-group li {
+  display: inline-flex;
+  align-items: center;
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: #fff;
+}
+.np-marquee-group li::after {
+  content: "\2726";
+  margin: 0 0.9em;
+  font-size: 0.4em;
+  color: var(--np-accent);
+  -webkit-text-stroke: 0;
+}
+.np-marquee-reverse .np-marquee-group li {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.35);
+}
+@keyframes npMarquee { to { transform: translateX(-50%); } }
+
+/* ---------- experience timeline fill ---------- */
+.np-tl-fill {
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(180deg, var(--np-accent), rgba(201, 243, 29, 0.55));
+  box-shadow: 0 0 12px rgba(201, 243, 29, 0.45);
+  transform: scaleY(0);
+  transform-origin: top center;
+  pointer-events: none;
+}
+.np-js .timeline-marker {
+  z-index: 1;
+  background: #1f1f1f;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  box-shadow: none;
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.np-js .timeline-item.is-lit .timeline-marker {
+  background: var(--np-accent);
+  border-color: var(--np-accent);
+  box-shadow: 0 0 0 5px rgba(201, 243, 29, 0.16), 0 0 18px rgba(201, 243, 29, 0.5);
+}
+
+/* ---------- copy buttons ---------- */
+.np-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 13px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--np-border);
+  border-radius: 40px;
+  cursor: pointer;
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, filter 0.25s ease;
+}
+.np-copy:hover { color: #fff; border-color: rgba(201, 243, 29, 0.6); }
+.np-copy:focus-visible { outline: 2px solid var(--np-accent); outline-offset: 2px; }
+.np-copy.is-copied { color: var(--np-dark); background: var(--np-accent); border-color: var(--np-accent); }
+.np-copy i { font-size: 13px; margin: 0 !important; color: inherit !important; display: inline !important; }
+.np-copy-sm { padding: 5px 10px; font-size: 12px; }
+
+/* ---------- contact: border beam on the primary card ---------- */
+@property --np-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+.np-beam-wrap { position: relative; height: calc(100% - 30px); margin-bottom: 30px; }
+.np-beam-wrap .contact-card { height: 100%; margin-bottom: 0; }
+.np-beam { position: relative; isolation: isolate; }
+.np-beam::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(from var(--np-angle), transparent 0 68%, rgba(201, 243, 29, 0.15) 76%, var(--np-accent) 88%, #fff 90%, transparent 93%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: npBeam 4.5s linear infinite;
+  pointer-events: none;
+}
+.np-still .np-beam::before { animation-play-state: paused; }
+@keyframes npBeam { to { --np-angle: 360deg; } }
+.np-copy-float { position: absolute; top: 20px; right: 20px; z-index: 2; }
+
+/* ---------- case studies: code windows, terminals, TOC ---------- */
+.np-code-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: #1a1a1a;
+  border: 1px solid var(--np-border);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  font: 12px/1 var(--np-mono);
+  color: rgba(255, 255, 255, 0.55);
+}
+.np-code-title { flex: 1; letter-spacing: 0.06em; text-transform: uppercase; }
+.np-code-window pre { border-radius: 0 0 12px 12px !important; }
+.np-copy-host { position: relative; }
+.np-copy-corner { position: absolute; top: 24px; right: 24px; opacity: 0; }
+.np-copy-host:hover .np-copy-corner,
+.np-copy-corner:focus-visible,
+.np-copy-corner.is-copied { opacity: 1; }
+@media (hover: none) { .np-copy-corner { opacity: 1; } }
+
+.np-terminal {
+  margin: 30px 0 36px;
+  border: 1px solid var(--np-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #0e0e0e;
+}
+.np-terminal .np-code-bar { border: 0; border-bottom: 1px solid var(--np-border); border-radius: 0; }
+.np-terminal .np-code-title { text-transform: none; letter-spacing: 0; }
+.np-terminal pre { margin: 0; padding: 20px 24px; background: transparent; border: 0; overflow-x: auto; }
+.np-terminal code {
+  font-family: var(--np-mono);
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: #d6d6d6;
+  white-space: pre-wrap;
+}
+.np-t-line { display: block; }
+.np-t-line[data-kind="cmd"] { color: #fff; }
+.np-t-line[data-kind="cmd"]::before { content: "$ "; color: var(--np-accent); }
+.np-t-line .ok { color: var(--np-accent); }
+.np-t-line .dim { color: rgba(255, 255, 255, 0.45); }
+.np-terminal[data-armed] .np-t-line { visibility: hidden; }
+.np-terminal[data-armed] .np-t-line.is-shown { visibility: visible; }
+.np-t-caret {
+  display: inline-block;
+  width: 8px;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: -2px;
+  background: var(--np-accent);
+  animation: npBlink 1s steps(1) infinite;
+}
+@keyframes npBlink { 50% { opacity: 0; } }
+.np-terminal-note {
+  margin: 0;
+  padding: 10px 24px 13px;
+  font-size: 13px;
+  color: var(--np-muted);
+  border-top: 1px solid var(--np-border);
+}
+
+.project-details-content h3 { scroll-margin-top: 120px; }
+.np-toc {
+  position: sticky;
+  top: 120px;
+  margin-top: 30px;
+  padding: 26px 28px;
+  border-radius: 16px;
+  border: 1px solid var(--np-border);
+  background: var(--np-panel);
+}
+.np-toc-title {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--np-muted);
+}
+.np-toc ol { margin: 0; padding: 0; list-style: none; border-left: 1px solid var(--np-border); }
+.np-toc a {
+  display: block;
+  margin-left: -1px;
+  padding: 7px 0 7px 16px;
+  border-left: 2px solid transparent;
+  font-size: 15px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.np-toc a:hover { color: #fff; }
+.np-toc a.is-active { color: var(--np-accent); border-left-color: var(--np-accent); }
+@media (max-width: 991px) { .np-toc { display: none; } }
+
+/* ---------- whole site: scroll progress + motion toggle ---------- */
+.np-progress {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100000;
+  height: 2px;
+  background: var(--np-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+.np-motion-toggle {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font: 500 11px/1 var(--np-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(18, 18, 18, 0.85);
+  border: 1px solid var(--np-border);
+  border-radius: 40px;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.np-motion-toggle:hover { color: #fff; border-color: rgba(201, 243, 29, 0.5); }
+.np-motion-toggle:focus-visible { outline: 2px solid var(--np-accent); outline-offset: 2px; }
+.np-motion-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--np-accent);
+  box-shadow: 0 0 8px var(--np-accent);
+}
+.np-still .np-motion-dot { background: rgba(255, 255, 255, 0.35); box-shadow: none; }
+@media (max-width: 575px) {
+  .np-motion-toggle { left: 12px; bottom: 12px; padding: 11px; }
+  .np-motion-toggle span:last-child {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .np-loader { display: none; }
+}

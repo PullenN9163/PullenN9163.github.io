@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="../assets/css/slick.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/custom.css">
+    <link rel="stylesheet" href="../assets/css/enhance.css">
 </head>
 
 <body>
@@ -104,6 +105,7 @@
                             <p>I built the Data Hub to bring those workflows into one place. PostgreSQL serves as the centralized catalog database, while staged supplier imports validate incoming files before anything is allowed into the main catalog. Each import keeps its history, separates invalid or questionable records for review, and gives the team a clearer path from the supplier&rsquo;s original file to the data we eventually use.</p>
                             <h3>Replacing the spreadsheet loop</h3>
                             <p>The browser workspaces are the part that most directly replaces the old Excel workflow. They let the team open large supplier datasets, filter and review rows, make bulk edits, and run database matching without moving between separate files and tools. Matching can use configurable keys and mapped columns, and the preview step makes it possible to review the result before applying changes. Once the data is ready, export workflows turn the cleaned and matched records back into the formats needed for customer updates, pricing work, and catalog operations.</p>
+                            <div class="np-terminal" data-np-terminal><div class="np-code-bar"><span class="np-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="np-code-title">datahub &mdash; supplier import walkthrough</span></div><pre><code><span class="np-t-line" data-kind="cmd">import supplier_file.xlsx</span><span class="np-t-line"><span class="ok">&#10003;</span> staged &mdash; original file and import history kept</span><span class="np-t-line"><span class="ok">&#10003;</span> validated &mdash; invalid or questionable rows set aside for review</span><span class="np-t-line" data-kind="cmd">match --keys configurable --columns mapped</span><span class="np-t-line"><span class="ok">&#10003;</span> preview ready &mdash; changes reviewed before anything is applied</span><span class="np-t-line" data-kind="cmd">apply</span><span class="np-t-line"><span class="ok">&#10003;</span> merged into the catalog &mdash; change recorded in the audit log</span><span class="np-t-line" data-kind="cmd">export --for customer-update</span><span class="np-t-line"><span class="ok">&#10003;</span> cleaned, matched records exported in the required format</span></code></pre><p class="np-terminal-note">Illustrative walkthrough of the import flow described above, not captured output.</p></div>
                             <h3>Making the system explain itself</h3>
                             <p>I also wanted the platform to explain what it was doing after an import finished. It tracks import activity, scheduled jobs, application health, API performance, and database activity, with audit logging for changes that need to be traced later. Background job scheduling handles recurring work, and the monitoring views make it easier to spot a failed job or slow endpoint without digging through multiple systems.</p>
                             <h3>Deployment and what&rsquo;s next</h3>
@@ -220,6 +222,7 @@
     <script src="../assets/js/isotope.pkgd.min.js"></script>
     <script src="../assets/js/wow.min.js"></script>
     <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/enhance.js"></script>
 
 </body>
 
