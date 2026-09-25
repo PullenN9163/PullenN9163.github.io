@@ -11,7 +11,7 @@ Laravel/Blade form to plain static HTML (GitHub Pages cannot execute PHP).
 ```
 index.html                  Home — hero, about, what I do, experience, skills, featured projects, contact
 about.html                  Full background: bio, experience detail, education, complete skill set
-projects.html               All eight projects
+projects.html               All nine projects
 projects/*.html             One case-study page per project
 404.html                    Not-found page
 assets/

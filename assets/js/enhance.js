@@ -22,12 +22,6 @@
     if (text) node.textContent = text;
     return node;
   }
-  function dots() {
-    var wrap = el('span', 'np-dots');
-    wrap.setAttribute('aria-hidden', 'true');
-    for (var i = 0; i < 3; i++) wrap.appendChild(el('i'));
-    return wrap;
-  }
   function copyButton(extraClass) {
     var btn = el('button', 'np-copy np-copy-sm' + (extraClass ? ' ' + extraClass : ''));
     btn.type = 'button';
@@ -213,12 +207,22 @@
     document.querySelectorAll('.project-card').forEach(function (card, i) {
       var media = card.querySelector('.project-card-media');
       if (!media || media.querySelector('.np-card-arrow')) return;
-      // Fallback thumbnails already show a big number, so skip the tag there.
-      if (!media.querySelector('.project-thumb-fallback')) {
-        var tag = el('span', 'np-card-index', (i < 9 ? '0' : '') + (i + 1));
+      var number = (i < 9 ? '0' : '') + (i + 1);
+      // Fallback thumbnails already show a big number; keep it in step with the grid order.
+      var fallback = media.querySelector('.project-thumb-fallback span');
+      if (fallback) {
+        fallback.textContent = number;
+      } else {
+        var tag = el('span', 'np-card-index', number);
         tag.setAttribute('aria-hidden', 'true');
         media.appendChild(tag);
       }
+      // WOW's animation fill-mode pins transform after the entrance, which would block the hover lift.
+      card.addEventListener('animationend', function () {
+        card.classList.remove('animated', 'fadeInUp');
+        card.style.animationName = '';
+      });
+
       var arrow = el('span', 'np-card-arrow');
       arrow.setAttribute('aria-hidden', 'true');
       arrow.appendChild(el('i', 'far fa-arrow-right'));
@@ -325,7 +329,6 @@
       var lang = block.querySelector('.code-lang');
       var code = block.querySelector('code');
       var bar = el('div', 'np-code-bar');
-      bar.appendChild(dots());
       bar.appendChild(el('span', 'np-code-title', lang ? lang.textContent.trim() : 'code'));
       if (lang) lang.remove();
       if (code) {
