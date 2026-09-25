@@ -56,16 +56,6 @@
   }
   root.classList.toggle('np-still', isStill());
 
-  // ---------- "ready" = after the intro loader has cleared ----------
-  var ready = false;
-  var readyQueue = [];
-  function whenReady(fn) { ready ? fn() : readyQueue.push(fn); }
-  function markReady() {
-    if (ready) return;
-    ready = true;
-    readyQueue.forEach(function (fn) { fn(); });
-  }
-
   function inView(target, fn, margin) {
     if (!('IntersectionObserver' in window)) { fn(); return; }
     var io = new IntersectionObserver(function (entries) {
@@ -77,31 +67,6 @@
   }
 
   function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
-
-  // ---------- intro loader (home page only) ----------
-  function initLoader() {
-    var loader = document.querySelector('.np-loader');
-    if (!loader) { markReady(); return; }
-    if (root.classList.contains('np-no-loader')) { loader.remove(); markReady(); return; }
-
-    var count = loader.querySelector('.np-loader-count');
-    var bar = loader.querySelector('.np-loader-bar');
-    var start = performance.now();
-    var duration = 1100;
-
-    function tick(now) {
-      var p = clamp((now - start) / duration, 0, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      count.textContent = Math.round(eased * 100);
-      bar.style.transform = 'scaleX(' + eased + ')';
-      if (p < 1) { requestAnimationFrame(tick); return; }
-      loader.classList.add('is-done');
-      try { sessionStorage.setItem('np-loaded', '1'); } catch (e) { /* private mode */ }
-      setTimeout(markReady, 380);
-      setTimeout(function () { loader.remove(); }, 1500);
-    }
-    requestAnimationFrame(tick);
-  }
 
   // ---------- hero: dithered, drifting light field ----------
   function initHeroDither() {
@@ -213,17 +178,15 @@
     heading.style.minHeight = heading.offsetHeight + 'px';
     paint(0, performance.now());
 
-    whenReady(function () {
-      var start = performance.now();
-      var perChar = 26, lead = 150;
-      function frame(now) {
-        var revealed = Math.floor((now - start - lead) / perChar);
-        if (revealed >= full.length) { restore(); return; }
-        paint(revealed, now);
-        requestAnimationFrame(frame);
-      }
+    var start = performance.now();
+    var perChar = 26, lead = 350;
+    function frame(now) {
+      var revealed = Math.floor((now - start - lead) / perChar);
+      if (revealed >= full.length) { restore(); return; }
+      paint(revealed, now);
       requestAnimationFrame(frame);
-    });
+    }
+    requestAnimationFrame(frame);
   }
 
   // ---------- animated numbers ----------
@@ -232,72 +195,34 @@
       var target = parseFloat(counter.getAttribute('data-np-count')) || 0;
       if (isStill()) { counter.textContent = target; return; }
       counter.textContent = '0';
-      whenReady(function () {
-        inView(counter, function () {
-          var start = performance.now(), duration = 1800;
-          function frame(now) {
-            var p = clamp((now - start) / duration, 0, 1);
-            var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
-            counter.textContent = Math.round(target * eased);
-            if (p < 1) requestAnimationFrame(frame);
-          }
-          requestAnimationFrame(frame);
-        }, '0px');
-      });
+      inView(counter, function () {
+        var start = performance.now(), duration = 1800;
+        function frame(now) {
+          var p = clamp((now - start) / duration, 0, 1);
+          var eased = p === 1 ? 1 : 1 - Math.pow(2, -10 * p);
+          counter.textContent = Math.round(target * eased);
+          if (p < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      }, '0px');
     });
   }
 
-  // ---------- project cards: browser chrome + tilt ----------
+  // ---------- project cards: index tag + hover arrow ----------
   function initProjectCards() {
-    var cards = document.querySelectorAll('.project-card');
-    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-    cards.forEach(function (card) {
+    document.querySelectorAll('.project-card').forEach(function (card, i) {
       var media = card.querySelector('.project-card-media');
-      if (media && !card.querySelector('.np-chrome')) {
-        var slug = (media.getAttribute('href') || '').split('/').pop().replace(/\.html$/, '');
-        var chrome = el('div', 'np-chrome');
-        chrome.setAttribute('aria-hidden', 'true');
-        chrome.appendChild(dots());
-        var url = el('span', 'np-url', 'pullenn9163.github.io/projects/');
-        url.appendChild(el('b', '', slug));
-        chrome.appendChild(url);
-        card.insertBefore(chrome, media);
+      if (!media || media.querySelector('.np-card-arrow')) return;
+      // Fallback thumbnails already show a big number, so skip the tag there.
+      if (!media.querySelector('.project-thumb-fallback')) {
+        var tag = el('span', 'np-card-index', (i < 9 ? '0' : '') + (i + 1));
+        tag.setAttribute('aria-hidden', 'true');
+        media.appendChild(tag);
       }
-
-      // WOW's animation fill-mode would pin transform after the entrance; release it.
-      card.addEventListener('animationend', function () {
-        card.classList.remove('animated', 'fadeInUp');
-        card.style.animationName = '';
-      });
-
-      if (!finePointer) return;
-      card.classList.add('np-tilt');
-      card.addEventListener('pointermove', function (e) {
-        if (isStill()) return;
-        var r = card.getBoundingClientRect();
-        var px = (e.clientX - r.left) / r.width;
-        var py = (e.clientY - r.top) / r.height;
-        card.style.setProperty('--rx', ((0.5 - py) * 7).toFixed(2) + 'deg');
-        card.style.setProperty('--ry', ((px - 0.5) * 9).toFixed(2) + 'deg');
-        card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
-        card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
-      });
-      card.addEventListener('pointerleave', function () {
-        card.style.setProperty('--rx', '0deg');
-        card.style.setProperty('--ry', '0deg');
-      });
-    });
-  }
-
-  // ---------- marquee ----------
-  function initMarquees() {
-    document.querySelectorAll('.np-marquee-inner').forEach(function (inner) {
-      var group = inner.querySelector('.np-marquee-group');
-      if (!group || inner.children.length > 1) return;
-      var clone = group.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      inner.appendChild(clone);
+      var arrow = el('span', 'np-card-arrow');
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.appendChild(el('i', 'far fa-arrow-right'));
+      media.appendChild(arrow);
     });
   }
 
@@ -531,12 +456,10 @@
   }
 
   // ---------- boot ----------
-  initLoader();
   initHeroDither();
   initScramble();
   initCounters();
   initProjectCards();
-  initMarquees();
   initScrollEffects();
   initCopyButtons();
   initCodeBlocks();
