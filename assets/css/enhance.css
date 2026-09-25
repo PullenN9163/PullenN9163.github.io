@@ -48,7 +48,7 @@
 .project-card-media { position: relative; }
 .project-card-media img {
   filter: grayscale(0.55) brightness(0.82);
-  transition: transform 0.5s ease, filter 0.5s ease;
+  transition: filter 0.5s ease;
 }
 .project-card:hover .project-card-media img { filter: none; }
 .np-card-index {
@@ -80,21 +80,14 @@
   color: var(--np-dark);
   background: var(--np-accent);
   opacity: 0;
-  transform: translate(10px, 10px) scale(0.7);
-  transition: opacity 0.35s ease, transform 0.45s var(--np-ease);
+  transform: rotate(-45deg);
+  transition: opacity 0.35s ease;
 }
-.project-card:hover .np-card-arrow { opacity: 1; transform: rotate(-45deg); }
+.project-card:hover .np-card-arrow { opacity: 1; }
 @media (hover: none) {
   .project-card-media img { filter: none; }
-  .np-card-arrow { opacity: 1; transform: rotate(-45deg) scale(0.85); }
+  .np-card-arrow { opacity: 1; }
 }
-
-/* ---------- code-window dots (case studies) ---------- */
-.np-dots { display: inline-flex; gap: 6px; flex-shrink: 0; }
-.np-dots i { width: 9px; height: 9px; border-radius: 50%; }
-.np-dots i:nth-child(1) { background: #ff5f57; }
-.np-dots i:nth-child(2) { background: #febc2e; }
-.np-dots i:nth-child(3) { background: #28c840; }
 
 /* ---------- experience timeline fill ---------- */
 .np-tl-fill {
@@ -201,7 +194,7 @@
   background: #0e0e0e;
 }
 .np-terminal .np-code-bar { border: 0; border-bottom: 1px solid var(--np-border); border-radius: 0; }
-.np-terminal .np-code-title { text-transform: none; letter-spacing: 0; }
+.np-terminal .np-code-title { text-transform: none; letter-spacing: 0.02em; }
 .np-terminal pre { margin: 0; padding: 20px 24px; background: transparent; border: 0; overflow-x: auto; }
 .np-terminal code {
   font-family: var(--np-mono);

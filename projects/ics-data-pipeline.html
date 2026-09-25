@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="../assets/css/animate.min.css">
     <link rel="stylesheet" href="../assets/css/slick.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link rel="stylesheet" href="../assets/css/enhance.css">
+    <link rel="stylesheet" href="../assets/css/custom.css?v=3">
+    <link rel="stylesheet" href="../assets/css/enhance.css?v=3">
 </head>
 
 <body>
@@ -103,7 +103,7 @@
                             <ul class="list-style-one"><li>Create a new and efficient ethical hacking practice for interpreting raw Shodan data</li><li>Develop a centralized database to house Shodan data</li><li>Create a way to visualize Shodan data for specific ICS types</li></ul>
                             <h3>Key tasks</h3>
                             <ul class="list-style-one"><li>Downloaded Shodan data for all ICS ports (47808, 502, 102, 44818)</li><li>Reduced the data in Excel to only the relevant fields (IP, location, object name, and similar)</li><li>Imported the cleaned data into a SQL database</li><li>Developed queries to pull the data ethical hackers would need</li><li>Visualized query results in Tableau</li><li>Analyzed the results to conduct a risk assessment, then published a Tableau story</li></ul>
-                            <div class="np-terminal" data-np-terminal><div class="np-code-bar"><span class="np-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="np-code-title">ics-pipeline &mdash; walkthrough</span></div><pre><code><span class="np-t-line" data-kind="cmd">download shodan --ports 47808,502,102,44818</span><span class="np-t-line"><span class="ok">&#10003;</span> raw ICS scan results collected for each port</span><span class="np-t-line" data-kind="cmd">reduce --fields ip,location,object_name</span><span class="np-t-line"><span class="ok">&#10003;</span> trimmed to the relevant fields in Excel</span><span class="np-t-line" data-kind="cmd">load ShodanResults</span><span class="np-t-line"><span class="ok">&#10003;</span> cleaned data imported into the SQL database</span><span class="np-t-line" data-kind="cmd">query | tableau</span><span class="np-t-line"><span class="ok">&#10003;</span> results visualized &mdash; risk assessment published as a Tableau story</span></code></pre><p class="np-terminal-note">Illustrative walkthrough of the key tasks above, not captured output.</p></div>
+                            <div class="np-terminal" data-np-terminal><div class="np-code-bar"><span class="np-code-title">ics-pipeline &mdash; walkthrough</span></div><pre><code><span class="np-t-line" data-kind="cmd">download shodan --ports 47808,502,102,44818</span><span class="np-t-line"><span class="ok">&#10003;</span> raw ICS scan results collected for each port</span><span class="np-t-line" data-kind="cmd">reduce --fields ip,location,object_name</span><span class="np-t-line"><span class="ok">&#10003;</span> trimmed to the relevant fields in Excel</span><span class="np-t-line" data-kind="cmd">load ShodanResults</span><span class="np-t-line"><span class="ok">&#10003;</span> cleaned data imported into the SQL database</span><span class="np-t-line" data-kind="cmd">query | tableau</span><span class="np-t-line"><span class="ok">&#10003;</span> results visualized &mdash; risk assessment published as a Tableau story</span></code></pre><p class="np-terminal-note">Illustrative walkthrough of the key tasks above, not captured output.</p></div>
                             <h3>Representative queries</h3>
                             <div class="query-table"><table><thead><tr><th>Description</th><th>Query</th></tr></thead><tbody><tr><td>Show all Shodan entries of products from Obvious</td><td><pre><code>SELECT Model_name, Vendor_name
 FROM ShodanResults
@@ -222,7 +222,7 @@ ORDER BY COUNT(*) DESC;</code></pre></td></tr></tbody></table></div>
     <script src="../assets/js/isotope.pkgd.min.js"></script>
     <script src="../assets/js/wow.min.js"></script>
     <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/enhance.js"></script>
+    <script src="../assets/js/enhance.js?v=3"></script>
 
 </body>
 

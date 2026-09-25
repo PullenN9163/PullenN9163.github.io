@@ -6,17 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Catalog Team Data Hub &mdash; Nasir Pullen</title>
-    <meta name="description" content="An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.">
+    <title>ScentIQ &mdash; Nasir Pullen</title>
+    <meta name="description" content="A fragrance intelligence app: Next.js and FastAPI over PostgreSQL, invite-only Clerk sign-in, and a Bicep-defined Azure Container Apps deployment.">
     <meta name="author" content="Nasir Pullen">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Catalog Team Data Hub &mdash; Nasir Pullen">
-    <meta property="og:description" content="An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.">
-    <meta property="og:url" content="https://PullenN9163.github.io/projects/catalog-team-data-hub.html">
+    <meta property="og:title" content="ScentIQ &mdash; Nasir Pullen">
+    <meta property="og:description" content="A fragrance intelligence app: Next.js and FastAPI over PostgreSQL, invite-only Clerk sign-in, and a Bicep-defined Azure Container Apps deployment.">
+    <meta property="og:url" content="https://PullenN9163.github.io/projects/scentiq.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Catalog Team Data Hub &mdash; Nasir Pullen">
-    <meta name="twitter:description" content="An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.">
+    <meta name="twitter:title" content="ScentIQ &mdash; Nasir Pullen">
+    <meta name="twitter:description" content="A fragrance intelligence app: Next.js and FastAPI over PostgreSQL, invite-only Clerk sign-in, and a Bicep-defined Azure Container Apps deployment.">
 
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/flaticon.min.css">
@@ -75,12 +75,12 @@
     <section class="page-banner-area pt-200 rpt-140 pb-100 rpb-60 rel z-1 text-center">
         <div class="container">
             <div class="banner-inner text-white">
-                <h1 class="page-title wow fadeInUp delay-0-2s">Catalog Team Data Hub</h1>
+                <h1 class="page-title wow fadeInUp delay-0-2s">ScentIQ</h1>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
                         <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
                         <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
-                        <li class="breadcrumb-item active">Catalog Team Data Hub</li>
+                        <li class="breadcrumb-item active">ScentIQ</li>
                     </ol>
                 </nav>
             </div>
@@ -93,27 +93,25 @@
     <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
         <div class="container">
                 <div class="projects-details-image mb-50 wow fadeInUp delay-0-2s">
-                    <img src="../assets/images/projects/datahub-01.png" alt="Catalog Team Data Hub">
+                    <img src="../assets/images/projects/scentiq-01.png" alt="ScentIQ landing page with a recommended-today fragrance card">
                 </div>
             <div class="row gap-60">
                 <div class="col-lg-8">
                     <div class="project-details-content wow fadeInUp delay-0-2s">
-                        <span class="sub-title">Internal Data Platform</span>
-                        <p class="big-letter">An internal platform that moved our catalog team off file-by-file Excel work and onto a centralized, validated, database-backed process.</p>
-                        <p>The Catalog Team Data Hub is an internal data platform I designed and continue to build at Neta Scientific. Before it, most supplier catalog work happened in Excel with Ablebits: importing files one at a time, cleaning columns, running lookups, matching records, and passing updated spreadsheets between people. That process worked, but it was easy to lose context, repeat the same cleanup, or make a change without a clear record of what happened.</p>
-                            <h3>Centralizing the data</h3>
-                            <p>I built the Data Hub to bring those workflows into one place. PostgreSQL serves as the centralized catalog database, while staged supplier imports validate incoming files before anything is allowed into the main catalog. Each import keeps its history, separates invalid or questionable records for review, and gives the team a clearer path from the supplier&rsquo;s original file to the data we eventually use.</p>
-                            <h3>Replacing the spreadsheet loop</h3>
-                            <p>The browser workspaces are the part that most directly replaces the old Excel workflow. They let the team open large supplier datasets, filter and review rows, make bulk edits, and run database matching without moving between separate files and tools. Matching can use configurable keys and mapped columns, and the preview step makes it possible to review the result before applying changes. Once the data is ready, export workflows turn the cleaned and matched records back into the formats needed for customer updates, pricing work, and catalog operations.</p>
-                            <div class="np-terminal" data-np-terminal><div class="np-code-bar"><span class="np-code-title">datahub &mdash; supplier import walkthrough</span></div><pre><code><span class="np-t-line" data-kind="cmd">import supplier_file.xlsx</span><span class="np-t-line"><span class="ok">&#10003;</span> staged &mdash; original file and import history kept</span><span class="np-t-line"><span class="ok">&#10003;</span> validated &mdash; invalid or questionable rows set aside for review</span><span class="np-t-line" data-kind="cmd">match --keys configurable --columns mapped</span><span class="np-t-line"><span class="ok">&#10003;</span> preview ready &mdash; changes reviewed before anything is applied</span><span class="np-t-line" data-kind="cmd">apply</span><span class="np-t-line"><span class="ok">&#10003;</span> merged into the catalog &mdash; change recorded in the audit log</span><span class="np-t-line" data-kind="cmd">export --for customer-update</span><span class="np-t-line"><span class="ok">&#10003;</span> cleaned, matched records exported in the required format</span></code></pre><p class="np-terminal-note">Illustrative walkthrough of the import flow described above, not captured output.</p></div>
-                            <h3>Making the system explain itself</h3>
-                            <p>I also wanted the platform to explain what it was doing after an import finished. It tracks import activity, scheduled jobs, application health, API performance, and database activity, with audit logging for changes that need to be traced later. Background job scheduling handles recurring work, and the monitoring views make it easier to spot a failed job or slow endpoint without digging through multiple systems.</p>
-                            <h3>Deployment and what&rsquo;s next</h3>
-                            <p>The application runs in Docker, which keeps development and deployment consistent as it moves toward secure multi-user hosting. I am actively working with IT on Microsoft Graph integration, Microsoft Entra SSO, and VPN-based private access. Those infrastructure pieces are still being implemented, along with the longer-term plan to move the platform into an Azure-hosted environment.</p>
-                            <h3>Why this one matters to me</h3>
-                            <p>What makes this one of my favorite projects is that it sits between data engineering, platform development, and day-to-day catalog work. I can see the old spreadsheet process, understand where it breaks down, and then design the database, API, interface, and operational tooling needed to replace it with something the team can keep building on.</p>
-                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/datahub-01.png" alt="Home dashboard and registry overview" loading="lazy"><figcaption>Home dashboard and registry overview</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/datahub-08.png" alt="Workspace editor with sanitization results" loading="lazy"><figcaption>Workspace editor with sanitization results</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-4s"><img src="../assets/images/projects/datahub-07.png" alt="Workspace column profiling view" loading="lazy"><figcaption>Workspace column profiling view</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/datahub-09.png" alt="Match-to-database preview and merge workflow" loading="lazy"><figcaption>Match-to-database preview and merge workflow</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/datahub-03.png" alt="Export configuration workflow" loading="lazy"><figcaption>Export configuration workflow</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-4s"><img src="../assets/images/projects/datahub-05.png" alt="Server and Data Hub performance dashboards" loading="lazy"><figcaption>Server and Data Hub performance dashboards</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/datahub-06.png" alt="Learning center modules" loading="lazy"><figcaption>Learning center modules</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/datahub-04.png" alt="Bulk async NPT Excel file editor" loading="lazy"><figcaption>Bulk async NPT Excel file editor</figcaption></figure></div></div>
-                        
+                        <span class="sub-title">Full-Stack Application</span>
+                        <p class="big-letter">A personal fragrance intelligence app that considers your collection, the weather, and what&rsquo;s next on your schedule &mdash; then offers a clear recommendation.</p>
+                        <p>ScentIQ grew out of the same interest behind my eBay fragrance analysis. Instead of analysing a market, it helps one person get more out of the collection they already own. Members keep a persistent collection, log what they wear, record private custom fragrances, and see insights computed from that history.</p>
+                            <h3>Architecture</h3>
+                            <p>The repository is a lightweight monorepo. The frontend is Next.js 16 with React 19 and strict TypeScript; the API is FastAPI on Python 3.14 with SQLAlchemy, Alembic, and psycopg; and PostgreSQL 18 holds the fragrance catalog, collections, and wear history. The browser only ever talks to Next.js, which calls the internally hosted FastAPI service server-side &mdash; the API is never publicly routable. A generated OpenAPI contract keeps the two sides in step: continuous integration fails if the committed contract drifts from the running application.</p>
+                            <h3>Identity and data ownership</h3>
+                            <p>Sign-in is invite-only through Clerk. FastAPI verifies each token&rsquo;s signature, issuer, audience, and expiry, then maps the provider&rsquo;s subject to an internal user, creating one on first contact. Authentication fails closed: if the identity configuration is missing, protected endpoints return <code>503</code> rather than serving unauthenticated traffic.</p>
+                            <p>The catalog holds both shared curated fragrances and each member&rsquo;s private custom entries. Partial unique indexes let the two coexist, every repository query carries an ownership predicate, and another member&rsquo;s private row returns <code>404</code> rather than <code>403</code> so its existence doesn&rsquo;t leak. Account deletion is a two-phase flow driven by a signed webhook, with a scheduled reconciliation job for any deletion that never completes.</p>
+                            <h3>Deploying to Azure</h3>
+                            <p>The development environment is defined in modular Bicep: Container Apps for the web and API services, Azure Container Registry, PostgreSQL, Key Vault, Blob Storage, Application Insights, alerting, and an availability test. Services reach Azure resources through managed identities rather than stored secrets, and GitHub Actions deploys through OIDC. Database migrations run as an explicit, observable job before each rollout &mdash; never automatically when the API starts.</p>
+                            <h3>What&rsquo;s real and what&rsquo;s a preview</h3>
+                            <p>Profiles, preferences, collections, wear logs, custom fragrances, and collection insights are persisted and working. Weekly planning, the layering lab, discovery, the agent, and the weather and event cards are deliberately labelled as previews. Live weather and calendar connections, recommendation scoring, and language-model agent calls are the next milestones.</p>
+                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-02.png" alt="Feature overview: collection, weather-aware, event-aware, insights, layering lab, discover" loading="lazy"><figcaption>Feature overview from the public landing page</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/scentiq-03.png" alt="How it works: add your collection, set the scene, choose with confidence" loading="lazy"><figcaption>How it works</figcaption></figure></div></div>
+                        <div class="project-links"><a href="https://scentiq-web-dev-eus.calmflower-580a38d0.eastus.azurecontainerapps.io/dashboard" target="_blank" rel="noopener" class="theme-btn">Open ScentIQ <i class="far fa-angle-right"></i></a><a href="https://github.com/PullenN9163/scentiq" target="_blank" rel="noopener" class="theme-btn">View on GitHub <i class="far fa-angle-right"></i></a></div>
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeInUp delay-0-4s">
@@ -123,29 +121,25 @@
                                 <h5>Designer &amp; sole developer</h5>
                             </div>
                             <div class="pd-info-item">
-                                <span>Organization</span>
-                                <h5>Neta Scientific</h5>
+                                <span>Type</span>
+                                <h5>Full-stack web application</h5>
                             </div>
                             <div class="pd-info-item">
                                 <span>Timeline</span>
-                                <h5>2025 &ndash; ongoing</h5>
-                            </div>
-                            <div class="pd-info-item">
-                                <span>Scale</span>
-                                <h5>~900k+ row datasets</h5>
+                                <h5>Aug 2026 &ndash; ongoing</h5>
                             </div>
                             <div class="pd-info-item">
                                 <span>Status</span>
-                                <h5>In active development</h5>
+                                <h5>Invite-only private beta on Azure</h5>
                             </div>
-                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>PostgreSQL</span><span>Python</span><span>FastAPI</span><span>AG Grid</span><span>Docker</span><span>Nginx</span><span>ETL</span></div></div>
+                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>Next.js</span><span>React</span><span>TypeScript</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>Azure Container Apps</span><span>Bicep</span><span>GitHub Actions</span><span>Clerk</span></div></div>
                     </div>
                 </div>
             </div>
             <div class="project-nav mt-70">
-                <a href="scentiq.html" class="read-more"><i class="far fa-angle-left"></i> ScentIQ</a>
+                <a href="drexel-personality-system.html" class="read-more"><i class="far fa-angle-left"></i> Drexel Personality System</a>
                 <a href="../projects.html" class="read-more">All projects</a>
-                <a href="nba-player-dashboard.html" class="read-more">2024&ndash;25 NBA Player Stat Dashboard <i class="far fa-angle-right"></i></a>
+                <a href="catalog-team-data-hub.html" class="read-more">Catalog Team Data Hub <i class="far fa-angle-right"></i></a>
             </div>
         </div>
         <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
