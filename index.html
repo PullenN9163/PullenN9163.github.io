@@ -27,9 +27,19 @@
     <link rel="stylesheet" href="assets/css/slick.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/enhance.css">
+    <script>try{if(sessionStorage.getItem("np-loaded")||localStorage.getItem("np-motion")==="off"||matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("np-no-loader")}catch(e){}</script>
 </head>
 
 <body>
+
+    <!-- Intro loader (first visit per session) -->
+    <div class="np-loader" aria-hidden="true">
+        <div class="np-loader-cols"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="np-loader-meta"><span>Nas<b>.</b> Pullen</span><span>Data &amp; platforms</span></div>
+        <div class="np-loader-count">0</div>
+        <div class="np-loader-bar"></div>
+    </div>
 
     <!-- header area -->
     <header class="main-header menu-absolute">
@@ -72,12 +82,13 @@
 
     <!-- Hero Section Start -->
     <section class="main-hero-area pt-150 pb-80 rel z-1">
+        <canvas class="np-hero-canvas" aria-hidden="true"></canvas>
         <div class="container container-1620">
             <div class="row align-items-center">
                 <div class="col-lg-5 col-sm-7">
                     <div class="hero-content rmb-55 wow fadeInUp delay-0-2s">
                         <span class="h2">Hi, I&rsquo;m</span>
-                        <h1><b>Nas Pullen</b> data analyst &amp; platform builder</h1>
+                        <h1 data-np-scramble><b>Nas Pullen</b> data analyst &amp; platform builder</h1>
                         <p>I turn scattered, Excel-bound workflows into structured, database-backed systems. Right now that means building the Catalog Team Data Hub at Neta Scientific &mdash; and steadily growing from data analysis into platform and data engineering.</p>
                         <div class="hero-btns">
                             <a href="projects.html" class="theme-btn">View My Work <i class="far fa-angle-right"></i></a>
@@ -87,16 +98,16 @@
                 </div>
                 <div class="col-lg-3 col-sm-5 order-lg-3">
                     <div class="hero-counter-wrap ms-lg-auto rmb-55 wow fadeInUp delay-0-4s">
-                            <div class="counter-item counter-text-wrap">
-                                <span class="count-text " data-speed="3000" data-stop="8">0</span>
+                            <div class="counter-item">
+                                <span class="count-text" data-np-count="8">8</span>
                                 <span class="counter-title">Projects Shipped</span>
                             </div>
-                            <div class="counter-item counter-text-wrap">
-                                <span class="count-text k-plus" data-speed="3000" data-stop="900">0</span>
+                            <div class="counter-item">
+                                <span class="count-text k-plus" data-np-count="900">900</span>
                                 <span class="counter-title">Row Datasets Handled</span>
                             </div>
-                            <div class="counter-item counter-text-wrap">
-                                <span class="count-text plus" data-speed="3000" data-stop="3">0</span>
+                            <div class="counter-item">
+                                <span class="count-text plus" data-np-count="3">3</span>
                                 <span class="counter-title">Years In Data &amp; IT</span>
                             </div>
                     </div>
@@ -351,6 +362,13 @@
     </section>
     <!-- Skills end -->
 
+    <!-- Toolkit marquee start -->
+    <section class="np-marquee-band" aria-label="Tools and practices I work with">
+        <div class="np-marquee"><div class="np-marquee-inner"><ul class="np-marquee-group"><li>Python</li><li>PostgreSQL</li><li>FastAPI</li><li>Docker</li><li>Nginx</li><li>DuckDB</li><li>PyArrow</li><li>Pandas</li><li>AG Grid</li><li>Power BI</li><li>Tableau</li><li>Looker Studio</li></ul></div></div>
+        <div class="np-marquee np-marquee-reverse"><div class="np-marquee-inner"><ul class="np-marquee-group"><li>ETL pipelines</li><li>Schema design</li><li>Data validation</li><li>RBAC</li><li>Audit logging</li><li>Entra SSO</li><li>Microsoft Graph</li><li>REST APIs</li><li>WebSockets</li><li>Monday.com</li><li>Git &amp; GitHub</li></ul></div></div>
+    </section>
+    <!-- Toolkit marquee end -->
+
     <!-- Projects start -->
     <section class="projects-area pt-130 rpt-100 pb-100 rpb-70 rel z-1" id="projects">
         <div class="container">
@@ -436,11 +454,14 @@
                 <div class="col-lg-10">
                     <div class="row contact-cards">
                         <div class="col-md-6">
-                            <a href="mailto:pullennasir@gmail.com" class="contact-card wow fadeInUp delay-0-2s">
-                                <i class="far fa-envelope"></i>
-                                <span>Email</span>
-                                <h5>pullennasir@gmail.com</h5>
-                            </a>
+                            <div class="np-beam-wrap wow fadeInUp delay-0-2s">
+                                <a href="mailto:pullennasir@gmail.com" class="contact-card np-beam">
+                                    <i class="far fa-envelope"></i>
+                                    <span>Email</span>
+                                    <h5>pullennasir@gmail.com</h5>
+                                </a>
+                                <button type="button" class="np-copy np-copy-float" data-np-copy="pullennasir@gmail.com" aria-label="Copy email address"><i class="far fa-copy" aria-hidden="true"></i><span>Copy</span></button>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <a href="tel:+16092842409" class="contact-card wow fadeInUp delay-0-3s">
@@ -529,9 +550,6 @@
     </footer>
     <!-- footer area end -->
 
-    <!-- Preloader -->
-    <div class="preloader"><div class="custom-loader"></div></div>
-
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/appear.min.js"></script>
@@ -541,6 +559,7 @@
     <script src="assets/js/isotope.pkgd.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/enhance.js"></script>
 
 </body>
 

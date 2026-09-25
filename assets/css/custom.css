@@ -302,6 +302,7 @@
 .about-image-part img { border-radius: 16px; }
 .error-area h1 { font-size: 150px; line-height: 1; color: var(--np-accent); }
 .gap-60 { --bs-gutter-x: 60px; }
+@media (max-width: 991px) { .gap-60 { --bs-gutter-x: 24px; } }
 
 @media (max-width: 767px) {
   .error-area h1 { font-size: 92px; }
