@@ -61,13 +61,6 @@ python -m http.server 8777
 Then open http://127.0.0.1:8777. Opening the files directly with `file://` will work but is less
 representative of how Pages serves them.
 
-## Still to do
-
-- **Resume PDF.** Export the Word resume to `assets/Nasir_Pullen_Resume.pdf` and link it from the hero
-  if you want a download button.
-- **Custom domain.** Add a `CNAME` file containing the domain, and point a DNS `CNAME` record at
-  `PullenN9163.github.io`.
-
 ## Content sources
 
 Copy is drawn from the resume, the "Meet Nas!" Notion page, and the GitHub profile. The Notion page

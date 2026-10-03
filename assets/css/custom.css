@@ -296,8 +296,8 @@
   font-size: 16px;
   line-height: 1.8;
 }
-.author-image-part img { border-radius: 50%; object-fit: cover; aspect-ratio: 1; width: 100%; }
-.about-image-part img { border-radius: 16px; }
+.author-image-part img { border-radius: 50%; object-fit: cover; object-position: 50% 25%; aspect-ratio: 1; width: 100%; }
+.about-image-part img { border-radius: 16px; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; }
 .error-area h1 { font-size: 150px; line-height: 1; color: var(--np-accent); }
 .gap-60 { --bs-gutter-x: 60px; }
 @media (max-width: 991px) { .gap-60 { --bs-gutter-x: 24px; } }
