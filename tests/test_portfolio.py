@@ -229,5 +229,47 @@ class DataHubCaseStudyTests(PortfolioTestCase):
             )
 
 
+class ScentIQCaseStudyTests(PortfolioTestCase):
+    def test_case_study_documents_current_intelligence_features(self) -> None:
+        case_study = self.html("projects/scentiq.html")
+        for phrase in (
+            "Open-Meteo",
+            "Google",
+            "Outlook",
+            "daily and weekly planning",
+            "recommendation scoring",
+            "wear feedback",
+            "goal-aware",
+            "custom fragrance images",
+            "Azure OpenAI",
+            "grounded",
+            "deterministic fallback",
+        ):
+            self.assertIn(phrase, case_study)
+
+    def test_case_study_documents_azure_delivery_and_operations(self) -> None:
+        case_study = self.html("projects/scentiq.html")
+        for phrase in (
+            "managed identity",
+            "Bicep",
+            "OIDC",
+            "migration job",
+            "Application Insights",
+            "Log Analytics",
+            "rollback",
+            "recovery",
+        ):
+            self.assertIn(phrase, case_study)
+
+    def test_case_study_removes_stale_preview_claims(self) -> None:
+        case_study = self.html("projects/scentiq.html")
+        self.assertIn("Notification delivery remains future work", case_study)
+        self.assertNotIn("all deliberately labelled as previews", case_study)
+        self.assertNotIn(
+            "Live weather and calendar connections, recommendation scoring, and language-model agent calls are the next milestones",
+            case_study,
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

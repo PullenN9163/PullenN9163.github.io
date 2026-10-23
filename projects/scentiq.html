@@ -7,16 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>ScentIQ &mdash; Nasir Pullen</title>
-    <meta name="description" content="A fragrance intelligence app: Next.js and FastAPI over PostgreSQL, invite-only Clerk sign-in, and a Bicep-defined Azure Container Apps deployment.">
+    <meta name="description" content="ScentIQ combines weather- and calendar-aware fragrance planning, grounded Azure OpenAI advice, PostgreSQL persistence, and Bicep-defined Azure infrastructure.">
     <meta name="author" content="Nasir Pullen">
 
     <meta property="og:type" content="website">
     <meta property="og:title" content="ScentIQ &mdash; Nasir Pullen">
-    <meta property="og:description" content="A fragrance intelligence app: Next.js and FastAPI over PostgreSQL, invite-only Clerk sign-in, and a Bicep-defined Azure Container Apps deployment.">
+    <meta property="og:description" content="Weather- and calendar-aware fragrance planning with grounded advice and production-minded Azure infrastructure.">
     <meta property="og:url" content="https://PullenN9163.github.io/projects/scentiq.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ScentIQ &mdash; Nasir Pullen">
-    <meta name="twitter:description" content="A fragrance intelligence app: Next.js and FastAPI over PostgreSQL, invite-only Clerk sign-in, and a Bicep-defined Azure Container Apps deployment.">
+    <meta name="twitter:description" content="Weather- and calendar-aware fragrance planning with grounded advice and production-minded Azure infrastructure.">
 
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/flaticon.min.css">
@@ -98,19 +98,25 @@
             <div class="row gap-60">
                 <div class="col-lg-8">
                     <div class="project-details-content wow fadeInUp delay-0-2s">
-                        <span class="sub-title">Full-Stack Application</span>
+                        <div class="project-eyebrow"><span class="sub-title">Full-Stack Application</span><span class="status-label status-live">Live beta</span></div>
                         <p class="big-letter">A personal fragrance intelligence app that considers your collection, the weather, and what&rsquo;s next on your schedule &mdash; then offers a clear recommendation.</p>
-                        <p>ScentIQ grew out of the same interest behind my eBay fragrance analysis. Instead of analysing a market, it helps one person get more out of the collection they already own. Members keep a persistent collection, log what they wear, record private custom fragrances, and see insights computed from that history.</p>
+                        <p>ScentIQ grew out of the same interest behind my eBay fragrance analysis. Instead of analysing a market, it helps each member get more out of the collection they already own. Members keep a persistent collection, log what they wear, upload private custom fragrance images, record private fragrances, and see insights computed from that history.</p>
                             <h3>Architecture</h3>
                             <p>The repository is a lightweight monorepo. The frontend is Next.js 16 with React 19 and strict TypeScript; the API is FastAPI on Python 3.14 with SQLAlchemy, Alembic, and psycopg; and PostgreSQL 18 holds the fragrance catalog, collections, and wear history. The browser only ever talks to Next.js, which calls the internally hosted FastAPI service server-side &mdash; the API is never publicly routable. A generated OpenAPI contract keeps the two sides in step: continuous integration fails if the committed contract drifts from the running application.</p>
                             <h3>Identity and data ownership</h3>
                             <p>Sign-in is invite-only through Clerk. FastAPI verifies each token&rsquo;s signature, issuer, audience, and expiry, then maps the provider&rsquo;s subject to an internal user, creating one on first contact. Authentication fails closed: if the identity configuration is missing, protected endpoints return <code>503</code> rather than serving unauthenticated traffic.</p>
                             <p>The catalog holds both shared curated fragrances and each member&rsquo;s private custom entries. Partial unique indexes let the two coexist, every repository query carries an ownership predicate, and another member&rsquo;s private row returns <code>404</code> rather than <code>403</code> so its existence doesn&rsquo;t leak. Account deletion is a two-phase flow driven by a signed webhook, with a scheduled reconciliation job for any deletion that never completes.</p>
-                            <h3>Deploying to Azure</h3>
-                            <p>The development environment is defined in modular Bicep: Container Apps for the web and API services, Azure Container Registry, PostgreSQL, Key Vault, Blob Storage, Application Insights, alerting, and an availability test. Services reach Azure resources through managed identities rather than stored secrets, and GitHub Actions deploys through OIDC. Database migrations run as an explicit, observable job before each rollout &mdash; never automatically when the API starts.</p>
-                            <h3>What&rsquo;s real and what&rsquo;s a preview</h3>
-                            <p>Profiles, preferences, collections, wear logs, custom fragrances, and collection insights are persisted and working. The screenshots on this page are the preview screens, which run on sample data: weekly planning, the layering lab, discovery, the agent, and the weather and event cards are all deliberately labelled as previews inside the app. Live weather and calendar connections, recommendation scoring, and language-model agent calls are the next milestones.</p>
-                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-layering.jpg" alt="Layering Lab: scored guidance for pairing two fragrances" loading="lazy"><figcaption>Layering Lab: scored guidance for pairing two fragrances</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/scentiq-discover.jpg" alt="Discover: recommendations that balance the collection" loading="lazy"><figcaption>Discover: recommendations that balance the collection</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-4s"><img src="../assets/images/projects/scentiq-agent.jpg" alt="Agent: answers to supported questions from the demo collection" loading="lazy"><figcaption>Agent: answers to supported questions from the demo collection</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-landing.png" alt="Public landing page" loading="lazy"><figcaption>Public landing page</figcaption></figure></div></div>
+                            <h3>Live planning and wear intelligence</h3>
+                            <p>Today shows a live Open-Meteo forecast for the member&rsquo;s saved location and events from connected Google and Outlook calendars. Today and My Week use that context for persisted daily and weekly planning, sharing backend recommendation scoring, decisions, and wear feedback so suggestions can respond to what the member actually wears.</p>
+                            <p>Layering Lab builds goal-aware pairs and three-fragrance stacks, then saves wear and rating history. Recommendations and collection insights are grounded in the member&rsquo;s own catalog and activity rather than a disconnected demo dataset.</p>
+                            <h3>Grounded fragrance advisor</h3>
+                            <p>Ask ScentIQ streams grounded, tool-backed guidance through a configurable Azure OpenAI Responses provider. The model can read only bounded application context and has no model-initiated collection or calendar writes. When the provider is unavailable, a deterministic fallback keeps the core recommendation experience useful.</p>
+                            <h3>Azure delivery and operations</h3>
+                            <p>The development environment is defined in modular Bicep: Azure Container Apps for the web and internally routed API, Container Registry, PostgreSQL Flexible Server, Key Vault, private Blob Storage, Application Insights, Log Analytics, alerting, and an availability test. Each workload uses managed identity access at narrow resource scopes rather than stored Azure credentials, and GitHub Actions deploys immutable images through OIDC.</p>
+                            <p>An explicit migration job must succeed before application rollout; ordinary API startup never applies migrations. Smoke tests verify the same-origin application path after deployment. If a revision is unhealthy, the runbook restores the last known healthy image for rollback, while separate recovery procedures cover Storage, Key Vault, and PostgreSQL.</p>
+                            <h3>Current boundary</h3>
+                            <p>Profiles, preferences, collections, wear logs, custom fragrances, private images, weather, calendar context, planning, scoring, layering, and grounded advice are implemented. Notification delivery remains future work.</p>
+                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-layering.jpg" alt="ScentIQ Layering Lab interface for scored fragrance pair guidance" loading="lazy"><figcaption>Layering Lab interface for pairing guidance</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/scentiq-discover.jpg" alt="ScentIQ Discover interface for collection-aware recommendations" loading="lazy"><figcaption>Discover interface for collection-aware recommendations</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-4s"><img src="../assets/images/projects/scentiq-agent.jpg" alt="ScentIQ grounded fragrance advisor interface" loading="lazy"><figcaption>Grounded fragrance advisor interface</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-landing.png" alt="ScentIQ public landing page" loading="lazy"><figcaption>Public landing page</figcaption></figure></div></div>
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeInUp delay-0-4s">
@@ -129,9 +135,9 @@
                             </div>
                             <div class="pd-info-item">
                                 <span>Status</span>
-                                <h5>Invite-only private beta on Azure</h5>
+                                <h5><span class="status-label status-live">Invite-only Azure beta</span></h5>
                             </div>
-                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>Next.js</span><span>React</span><span>TypeScript</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>Azure Container Apps</span><span>Bicep</span><span>GitHub Actions</span><span>Clerk</span></div></div>
+                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>Next.js</span><span>React</span><span>TypeScript</span><span>FastAPI</span><span>PostgreSQL</span><span>Azure Container Apps</span><span>Azure OpenAI</span><span>Bicep</span><span>GitHub Actions</span><span>Clerk</span></div></div>
                             <div class="pd-info-item">
                                 <span>Source</span>
                                 <a href="https://github.com/PullenN9163/scentiq" class="read-more repo-link" target="_blank" rel="noopener">View GitHub repository <i class="fab fa-github"></i></a>
@@ -157,7 +163,7 @@
                     <div class="col-lg-5 col-md-12">
                         <div class="footer-widget widget_about wow fadeInUp delay-0-2s">
                             <a href="../index.html" class="site-wordmark footer-wordmark">Nas<span>.</span></a>
-                            <p class="mt-20">Data analyst and platform builder in Philadelphia, turning manual workflows into systems people can rely on.</p>
+                            <p class="mt-20">Data analyst building governed data products, backend systems, automation, and Azure infrastructure.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6">
