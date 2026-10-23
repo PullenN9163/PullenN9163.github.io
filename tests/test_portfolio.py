@@ -281,6 +281,18 @@ class ScentIQCaseStudyTests(PortfolioTestCase):
     def test_case_study_removes_stale_preview_claims(self) -> None:
         case_study = self.html("projects/scentiq.html")
         self.assertIn("Notification delivery remains future work", case_study)
+        self.assertIn(
+            "Live Azure OpenAI inference remains pending endpoint and deployment configuration",
+            case_study,
+        )
+        self.assertIn("Earlier advisor preview using sample data", case_study)
+        agent_images = [
+            image
+            for image in parse_document(ROOT / "projects/scentiq.html").images
+            if image.get("src", "").endswith("scentiq-agent.jpg")
+        ]
+        self.assertEqual(len(agent_images), 1)
+        self.assertIn("earlier preview", agent_images[0].get("alt", "").lower())
         self.assertNotIn("all deliberately labelled as previews", case_study)
         self.assertNotIn(
             "Live weather and calendar connections, recommendation scoring, and language-model agent calls are the next milestones",
@@ -326,6 +338,31 @@ class ReleaseReadinessTests(PortfolioTestCase):
         self.assertFalse(
             any("monday" in image.get("src", "").lower() for image in homepage.images)
         )
+
+    def test_netacap_media_link_has_an_accessible_name(self) -> None:
+        matches = [
+            anchor
+            for anchor in self.anchors("index.html")
+            if anchor.get("href") == "about.html#resume"
+            and "project-card-media" in anchor.get("class", "").split()
+        ]
+        self.assertEqual(len(matches), 1)
+        accessible_name = " ".join(
+            value
+            for value in (matches[0].get("text", ""), matches[0].get("aria-label", ""))
+            if value
+        )
+        self.assertTrue(accessible_name.strip())
+
+    def test_responsive_and_interaction_css_contracts(self) -> None:
+        css = (ROOT / "assets/css/custom.css").read_text(encoding="utf-8")
+        self.assertIn(
+            "@media (max-width: 991px) {\n  .proof-strip { max-width: none; grid-template-columns: 1fr; }\n}",
+            css,
+        )
+        self.assertIn(".theme-btn.repo-link:hover { color: #111; }", css)
+        self.assertIn(".project-card-media:focus-visible", css)
+        self.assertIn(".project-card-body h4 a:focus-visible", css)
 
 
 if __name__ == "__main__":
