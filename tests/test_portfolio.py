@@ -195,5 +195,39 @@ class CareerPositioningTests(PortfolioTestCase):
             )
 
 
+class DataHubCaseStudyTests(PortfolioTestCase):
+    def test_case_study_documents_live_fabric_platform(self) -> None:
+        case_study = self.html("projects/catalog-team-data-hub.html")
+        for phrase in (
+            "Microsoft Fabric",
+            "Lakehouse",
+            "pipelines",
+            "notebooks",
+            "dataflows",
+            "semantic models",
+            "Power BI",
+            "Fabric app",
+            "status-live",
+        ):
+            self.assertIn(phrase, case_study)
+
+    def test_gallery_identifies_prior_operational_application(self) -> None:
+        case_study = self.html("projects/catalog-team-data-hub.html").lower()
+        self.assertIn("prior operational application", case_study)
+        self.assertIn("legacy application gallery", case_study)
+
+    def test_project_cards_describe_fabric_without_repository_action(self) -> None:
+        for page in ("index.html", "projects.html"):
+            document = self.html(page)
+            self.assertIn("Microsoft Fabric", document)
+            self.assertFalse(
+                any(
+                    "datahub" in anchor.get("href", "").lower()
+                    and anchor.get("href", "").startswith("http")
+                    for anchor in self.anchors(page)
+                )
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
