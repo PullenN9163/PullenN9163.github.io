@@ -174,7 +174,29 @@
 .project-card-body h4 a { color: #fff; }
 .project-card-body h4 a:hover { color: var(--np-accent); }
 .project-card-body p { font-size: 15.5px; line-height: 1.7; margin-bottom: 0; color: var(--np-muted); }
-.project-card-body .read-more { margin-top: auto; padding-top: 18px; font-weight: 600; }
+.project-card-body .read-more { font-weight: 600; }
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 18px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+.project-actions .read-more { padding-top: 0; }
+.repo-link { color: var(--np-muted); }
+.repo-link:hover { color: var(--np-accent); }
+.repo-link:focus-visible {
+  outline: 2px solid var(--np-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.project-details-info .repo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 9px;
+}
 
 /* ---------- project detail pages ---------- */
 .project-details-content .big-letter { font-size: 20px; line-height: 1.75; }

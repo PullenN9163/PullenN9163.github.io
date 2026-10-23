@@ -111,5 +111,43 @@ class PortfolioIntegrityTests(PortfolioTestCase):
         self.assertEqual(missing_alt, [], "Images missing alt text:\n" + "\n".join(missing_alt))
 
 
+class RepositoryActionTests(PortfolioTestCase):
+    REPOSITORIES = {
+        "projects/scentiq.html": "https://github.com/PullenN9163/scentiq",
+        "projects/dragon-insight.html": "https://github.com/PullenN9163/senior_design",
+        "projects/youtube-viral-prediction.html": "https://github.com/PullenN9163/Youtube-Trending-Data-Analysis",
+    }
+
+    def test_verified_repository_actions_appear_on_project_cards(self) -> None:
+        self.assert_external_action(
+            "index.html",
+            self.REPOSITORIES["projects/scentiq.html"],
+            "View GitHub repository",
+        )
+        for url in self.REPOSITORIES.values():
+            self.assert_external_action("projects.html", url, "View GitHub repository")
+
+    def test_verified_repository_actions_appear_on_case_studies(self) -> None:
+        for page, url in self.REPOSITORIES.items():
+            self.assert_external_action(page, url, "View GitHub repository")
+
+    def test_unmatched_case_studies_have_no_repository_action(self) -> None:
+        unmatched = {
+            "projects/catalog-team-data-hub.html",
+            "projects/drexel-personality-system.html",
+            "projects/ebay-fragrance-analysis.html",
+            "projects/enterprise-network-config.html",
+            "projects/ics-data-pipeline.html",
+            "projects/nba-player-dashboard.html",
+        }
+        for page in unmatched:
+            repo_links = [
+                anchor
+                for anchor in self.anchors(page)
+                if "repo-link" in anchor.get("class", "").split()
+            ]
+            self.assertEqual(repo_links, [], f"Unexpected repository action in {page}")
+
+
 if __name__ == "__main__":
     unittest.main()
