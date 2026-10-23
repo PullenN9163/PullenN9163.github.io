@@ -149,5 +149,51 @@ class RepositoryActionTests(PortfolioTestCase):
             self.assertEqual(repo_links, [], f"Unexpected repository action in {page}")
 
 
+class CareerPositioningTests(PortfolioTestCase):
+    def test_homepage_leads_with_data_cloud_and_automation_evidence(self) -> None:
+        homepage = self.html("index.html")
+        for phrase in (
+            "Data analyst building data and cloud platforms on Azure",
+            "Microsoft Fabric",
+            "NetaCAP",
+            "Make.com",
+            "task-coordinator agents",
+        ):
+            self.assertIn(phrase, homepage)
+        self.assertIn('href="projects.html"', homepage)
+        self.assertIn('href="#contact"', homepage)
+
+    def test_about_describes_private_netacap_responsibility_and_services(self) -> None:
+        about = self.html("about.html")
+        for phrase in (
+            "infrastructure and backend engineer",
+            "private internal asset-management platform",
+            "API Management",
+            "Container Apps",
+            "Container App Jobs",
+            "PostgreSQL Flexible Server",
+            "Service Bus",
+            "Azure Functions",
+            "Static Web Apps",
+            "Key Vault",
+            "managed identities",
+            "Application Insights",
+            "Log Analytics",
+        ):
+            self.assertIn(phrase, about)
+
+    def test_netacap_remains_private_and_has_no_visual_or_external_target(self) -> None:
+        for page in ("index.html", "about.html"):
+            parser = parse_document(ROOT / page)
+            self.assertFalse(
+                any("netacap" in anchor.get("href", "").lower() for anchor in parser.anchors),
+                f"NetaCAP must not have an external or project link in {page}",
+            )
+            self.assertFalse(
+                any("netacap" in image.get("src", "").lower() for image in parser.images),
+                f"NetaCAP must not have an image in {page}",
+            )
+
+
 if __name__ == "__main__":
     unittest.main()
