@@ -16,11 +16,24 @@ class DocumentParser(HTMLParser):
         self.images: list[dict[str, str]] = []
         self.anchor_stack: list[dict[str, object]] = []
         self.anchors: list[dict[str, str]] = []
+        self.ids: list[str] = []
+        self.h1_count = 0
+        self.meta_descriptions: list[str] = []
+        self.title_parts: list[str] = []
+        self._in_title = False
 
     def handle_starttag(
         self, tag: str, attrs: list[tuple[str, str | None]]
     ) -> None:
         attributes = {key: value or "" for key, value in attrs}
+        if attributes.get("id"):
+            self.ids.append(attributes["id"])
+        if tag == "h1":
+            self.h1_count += 1
+        if tag == "meta" and attributes.get("name", "").lower() == "description":
+            self.meta_descriptions.append(attributes.get("content", ""))
+        if tag == "title":
+            self._in_title = True
         if tag == "a":
             self.references.append(("href", attributes.get("href", "")))
             self.anchor_stack.append({"attrs": attributes, "text": []})
@@ -33,12 +46,16 @@ class DocumentParser(HTMLParser):
             self.images.append(attributes)
 
     def handle_data(self, data: str) -> None:
+        if self._in_title:
+            self.title_parts.append(data)
         if self.anchor_stack:
             text = self.anchor_stack[-1]["text"]
             assert isinstance(text, list)
             text.append(data)
 
     def handle_endtag(self, tag: str) -> None:
+        if tag == "title":
+            self._in_title = False
         if tag != "a" or not self.anchor_stack:
             return
         anchor = self.anchor_stack.pop()
@@ -268,6 +285,46 @@ class ScentIQCaseStudyTests(PortfolioTestCase):
         self.assertNotIn(
             "Live weather and calendar connections, recommendation scoring, and language-model agent calls are the next milestones",
             case_study,
+        )
+
+
+class ReleaseReadinessTests(PortfolioTestCase):
+    CHANGED_PAGES = (
+        "index.html",
+        "about.html",
+        "projects.html",
+        "projects/catalog-team-data-hub.html",
+        "projects/scentiq.html",
+        "projects/dragon-insight.html",
+        "projects/youtube-viral-prediction.html",
+    )
+
+    def test_changed_pages_have_unique_titles_descriptions_and_one_h1(self) -> None:
+        titles: list[str] = []
+        for page in self.CHANGED_PAGES:
+            parser = parse_document(ROOT / page)
+            title = " ".join("".join(parser.title_parts).split())
+            self.assertTrue(title, f"Missing title in {page}")
+            titles.append(title)
+            self.assertEqual(len(parser.meta_descriptions), 1, page)
+            self.assertTrue(parser.meta_descriptions[0].strip(), page)
+            self.assertEqual(parser.h1_count, 1, page)
+            self.assertEqual(len(parser.ids), len(set(parser.ids)), f"Duplicate ids in {page}")
+        self.assertEqual(len(titles), len(set(titles)), "Changed-page titles must be unique")
+
+    def test_external_blank_links_are_protected(self) -> None:
+        unsafe: list[str] = []
+        for page in self.CHANGED_PAGES:
+            for anchor in self.anchors(page):
+                if anchor.get("target") == "_blank" and "noopener" not in anchor.get("rel", "").split():
+                    unsafe.append(f"{page}: {anchor.get('href', '')}")
+        self.assertEqual(unsafe, [], "Unsafe target=_blank links:\n" + "\n".join(unsafe))
+
+    def test_monday_agents_are_text_only(self) -> None:
+        homepage = parse_document(ROOT / "index.html")
+        self.assertIn("Monday task-coordinator agents", self.html("index.html"))
+        self.assertFalse(
+            any("monday" in image.get("src", "").lower() for image in homepage.images)
         )
 
 
