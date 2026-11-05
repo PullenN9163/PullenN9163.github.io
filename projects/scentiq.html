@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../assets/css/animate.min.css">
     <link rel="stylesheet" href="../assets/css/slick.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/custom.css?v=3">
+    <link rel="stylesheet" href="../assets/css/custom.css?v=4">
     <link rel="stylesheet" href="../assets/css/enhance.css?v=3">
 </head>
 
@@ -93,7 +93,7 @@
     <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
         <div class="container">
                 <div class="projects-details-image mb-50 wow fadeInUp delay-0-2s">
-                    <img src="../assets/images/projects/scentiq-week.jpg" alt="ScentIQ My Week screen with forecast- and schedule-aware recommendations">
+                    <img src="../assets/images/projects/scentiq-today.jpg" alt="ScentIQ Today screen: a scored daily recommendation alongside live weather and today's events">
                 </div>
             <div class="row gap-60">
                 <div class="col-lg-8">
@@ -108,9 +108,16 @@
                             <p>The catalog holds both shared curated fragrances and each member&rsquo;s private custom entries. Partial unique indexes let the two coexist, every repository query carries an ownership predicate, and another member&rsquo;s private row returns <code>404</code> rather than <code>403</code> so its existence doesn&rsquo;t leak. Account deletion is a two-phase flow driven by a signed webhook, with a scheduled reconciliation job for any deletion that never completes.</p>
                             <h3>Deploying to Azure</h3>
                             <p>The development environment is defined in modular Bicep: Container Apps for the web and API services, Azure Container Registry, PostgreSQL, Key Vault, Blob Storage, Application Insights, alerting, and an availability test. Services reach Azure resources through managed identities rather than stored secrets, and GitHub Actions deploys through OIDC. Database migrations run as an explicit, observable job before each rollout &mdash; never automatically when the API starts.</p>
-                            <h3>What&rsquo;s real and what&rsquo;s a preview</h3>
-                            <p>Profiles, preferences, collections, wear logs, custom fragrances, and collection insights are persisted and working. The screenshots on this page are the preview screens, which run on sample data: weekly planning, the layering lab, discovery, the agent, and the weather and event cards are all deliberately labelled as previews inside the app. Live weather and calendar connections, recommendation scoring, and language-model agent calls are the next milestones.</p>
-                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-layering.jpg" alt="Layering Lab: scored guidance for pairing two fragrances" loading="lazy"><figcaption>Layering Lab: scored guidance for pairing two fragrances</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/scentiq-discover.jpg" alt="Discover: recommendations that balance the collection" loading="lazy"><figcaption>Discover: recommendations that balance the collection</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-4s"><img src="../assets/images/projects/scentiq-agent.jpg" alt="Agent: answers to supported questions from the demo collection" loading="lazy"><figcaption>Agent: answers to supported questions from the demo collection</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-landing.png" alt="Public landing page" loading="lazy"><figcaption>Public landing page</figcaption></figure></div></div>
+                            <h3>Where it is now</h3>
+                            <p>The private beta runs on the Azure development environment against my real collection. Today and My Week pair each day&rsquo;s plans with the local forecast and return a scored pick with its reasoning; the Collection, wear logs, and Insights are persisted; Discover searches a catalog built from Fragrantica, Parfumo, and Luckyscent data and scores each candidate for taste match, collection expansion, and redundancy; and the Layering Lab grades blends from the shelf as you change direction, occasion, and season.</p>
+                            <h3>See it in action</h3>
+                            <p>Recorded from the live private beta.</p>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img class="project-video" src="../assets/images/projects/scentiq-tour-demo.gif" alt="Screen recording: moving from My Week to Collection to Insights" loading="lazy"><figcaption>My Week &rarr; Collection &rarr; Insights: picking a day, browsing the shelf, and reading the accord fingerprint</figcaption></figure>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img class="project-video" src="../assets/images/projects/scentiq-discover-demo.gif" alt="Screen recording: switching Discover modes and scrolling scored recommendations" loading="lazy"><figcaption>Discover: switching from &ldquo;Explore something new&rdquo; to &ldquo;Prepare for a season&rdquo; re-scores the catalog against the collection</figcaption></figure>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img class="project-video" src="../assets/images/projects/scentiq-layering-demo.gif" alt="Screen recording: changing blend direction and occasion in the Layering Lab" loading="lazy"><figcaption>Layering Lab: &ldquo;fresher&rdquo;, &ldquo;warmer&rdquo;, and &ldquo;evening&rdquo; each rebuild the blend and its score</figcaption></figure>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img class="project-video" src="../assets/images/projects/scentiq-agent-demo.gif" alt="Screen recording: asking the ScentIQ agent what to wear today" loading="lazy"><figcaption>Agent: &ldquo;Wear today&rdquo; returns a recommendation card with the same actions as the Today screen</figcaption></figure>
+                            <h3>Screens</h3>
+                            <div class="row project-gallery mt-0"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-week-v2.jpg" alt="My Week: a recommendation for each day's plans" loading="lazy"><figcaption>My Week: a separate match for each day&rsquo;s plans</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/scentiq-collection.jpg" alt="Collection: bottles, decants, and samples with remaining volume" loading="lazy"><figcaption>Collection: bottles, decants, and samples with remaining volume</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-discover-v2.jpg" alt="Discover: featured discovery with taste match, expansion, and redundancy scores" loading="lazy"><figcaption>Discover: taste match, collection expansion, and redundancy risk</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/scentiq-layering-v2.jpg" alt="Layering Studio: foundation and signature fragrances with a blend score" loading="lazy"><figcaption>Layering Studio: foundation + signature with a blend score</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-insights.jpg" alt="Insights: collection stats, accord distribution, and most worn" loading="lazy"><figcaption>Insights: collection stats, accord fingerprint, and rotation</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/scentiq-agent-v2.jpg" alt="Ask ScentIQ: agent with quick prompts" loading="lazy"><figcaption>Ask ScentIQ: quick prompts for common decisions</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/scentiq-landing.png" alt="Public landing page" loading="lazy"><figcaption>Public landing page</figcaption></figure></div></div>
                     </div>
                 </div>
                 <div class="col-lg-4 wow fadeInUp delay-0-4s">
@@ -215,7 +222,7 @@
     <script src="../assets/js/isotope.pkgd.min.js"></script>
     <script src="../assets/js/wow.min.js"></script>
     <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/enhance.js?v=3"></script>
+    <script src="../assets/js/enhance.js?v=4"></script>
 
 </body>
 

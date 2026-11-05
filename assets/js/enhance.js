@@ -469,4 +469,19 @@
   initTerminals();
   initToc();
   initMotionToggle();
+
+  // Live embeds (Looker, Tableau, Figma) use data-src so they don't hold up
+  // the window load event — and with it the template's preloader.
+  function loadDeferredEmbeds() {
+    var frames = document.querySelectorAll('iframe[data-src]');
+    for (var i = 0; i < frames.length; i++) {
+      frames[i].src = frames[i].getAttribute('data-src');
+      frames[i].removeAttribute('data-src');
+    }
+  }
+  if (document.readyState === 'complete') {
+    loadDeferredEmbeds();
+  } else {
+    window.addEventListener('load', loadDeferredEmbeds);
+  }
 })();

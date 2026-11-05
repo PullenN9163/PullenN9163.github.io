@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../assets/css/animate.min.css">
     <link rel="stylesheet" href="../assets/css/slick.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/custom.css?v=3">
+    <link rel="stylesheet" href="../assets/css/custom.css?v=4">
     <link rel="stylesheet" href="../assets/css/enhance.css?v=3">
 </head>
 
@@ -92,8 +92,12 @@
     <!-- Project Details start -->
     <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
         <div class="container">
-                <div class="projects-details-image mb-50 wow fadeInUp delay-0-2s">
-                    <img src="../assets/images/projects/nba-01.png" alt="2024&ndash;25 NBA Player Stat Dashboard">
+                <div class="mb-10 wow fadeInUp delay-0-2s">
+                    <span class="live-badge">Live dashboard &middot; interactive</span>
+                    <div class="project-embed project-embed--report">
+                        <iframe data-src="https://lookerstudio.google.com/embed/reporting/416bebd9-1a6d-4944-a206-d822a747a386/page/QJiTF" title="2024&ndash;25 NBA Player Stat Dashboard (Looker Studio)" loading="lazy" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                    </div>
+                    <p class="embed-caption"><span>Google Looker Studio report connected to my PostgreSQL player database &mdash; filter by player, team, or stat.</span><a href="https://lookerstudio.google.com/reporting/416bebd9-1a6d-4944-a206-d822a747a386/page/QJiTF" target="_blank" rel="noopener">Open full screen <i class="far fa-external-link"></i></a></p>
                 </div>
             <div class="row gap-60">
                 <div class="col-lg-8">
@@ -113,6 +117,7 @@ ggplot() +
   geom_histogram(aes(x = playoff$PTS), fill="red", alpha=0.5, bins=20) +
   labs(title="Regular Season vs Playoff PPG Distribution",
        x="Points Per Game", y="Frequency")</code></pre></div>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/nba-01.png" alt="Histogram of regular season (blue) vs playoff (red) points per game" loading="lazy"><figcaption>Output: regular season (blue) vs playoff (red) points-per-game distribution</figcaption></figure>
                             <h3>Top 10 players by total contribution (P+R+A)</h3>
                             <div class="code-block"><span class="code-lang">R</span><pre><code>nba %&gt;%
   arrange(desc(`P+R+A`)) %&gt;%        # Sort by total contribution
@@ -132,7 +137,7 @@ ggplot() +
     plot.subtitle = element_text(size = 11),
     axis.text.y = element_text(face = "bold")
   )</code></pre></div>
-                            <div class="row project-gallery"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/nba-01.png" alt="Looker Studio player dashboard" loading="lazy"><figcaption>Looker Studio player dashboard</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/nba-02.png" alt="Player comparison and stat breakdown view" loading="lazy"><figcaption>Player comparison and stat breakdown view</figcaption></figure></div></div>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/nba-02.png" alt="Bar chart of the top 10 players by points plus rebounds plus assists" loading="lazy"><figcaption>Output: top 10 players by total contribution (P+R+A), 2024&ndash;25 regular season</figcaption></figure>
                         
                     </div>
                 </div>
@@ -238,7 +243,7 @@ ggplot() +
     <script src="../assets/js/isotope.pkgd.min.js"></script>
     <script src="../assets/js/wow.min.js"></script>
     <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/enhance.js?v=3"></script>
+    <script src="../assets/js/enhance.js?v=4"></script>
 
 </body>
 

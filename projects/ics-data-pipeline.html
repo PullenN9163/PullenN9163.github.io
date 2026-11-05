@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="../assets/css/animate.min.css">
     <link rel="stylesheet" href="../assets/css/slick.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/custom.css?v=3">
+    <link rel="stylesheet" href="../assets/css/custom.css?v=4">
     <link rel="stylesheet" href="../assets/css/enhance.css?v=3">
 </head>
 
@@ -92,6 +92,13 @@
     <!-- Project Details start -->
     <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
         <div class="container">
+                <div class="mb-10 wow fadeInUp delay-0-2s">
+                    <span class="live-badge">Published Tableau story &middot; interactive</span>
+                    <div class="project-embed project-embed--tall">
+                        <iframe data-src="https://public.tableau.com/views/INFO-324_ICS_DataPipeline/Story1?:embed=y&amp;:showVizHome=no&amp;:display_count=n&amp;:language=en-US" title="ICS Data Pipeline Tableau story" loading="lazy" allowfullscreen></iframe>
+                    </div>
+                    <p class="embed-caption"><span>Step through the story to see where exposed ICS systems cluster and which organizations carry the most entries.</span><a href="https://public.tableau.com/views/INFO-324_ICS_DataPipeline/Story1?:language=en-US&amp;:display_count=n&amp;:origin=viz_share_link" target="_blank" rel="noopener">Open on Tableau Public <i class="far fa-external-link"></i></a></p>
+                </div>
             <div class="row gap-60">
                 <div class="col-lg-8">
                     <div class="project-details-content wow fadeInUp delay-0-2s">
@@ -117,6 +124,10 @@ FROM shodanresults
 WHERE country LIKE '%United States%'
 GROUP BY org
 ORDER BY COUNT(*) DESC;</code></pre></td></tr></tbody></table></div>
+                            <h3>Images</h3>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/ics-flowchart.png" alt="ICS data pipeline flowchart" loading="lazy"><figcaption>ICS data pipeline flowchart</figcaption></figure>
+                            <div class="row project-gallery mt-0"><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/ics-geo-map.png" alt="Geo map of organizations and their BACnet Shodan entry counts" loading="lazy"><figcaption>Geo map of each organization and its number of Shodan entries for BACnet ICS systems</figcaption></figure></div><div class="col-lg-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/ics-comparison-bar.png" alt="Bar graph comparing entries per ICS type for each organization" loading="lazy"><figcaption>Comparison of entries per ICS type for each organization</figcaption></figure></div></div>
+                            <figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/ics-test-query.webp" alt="Test query validating the database before importing the Shodan CSV" loading="lazy"><figcaption>Test query to confirm the database was correct before importing the Shodan CSV</figcaption></figure>
                         
                     </div>
                 </div>
@@ -222,7 +233,7 @@ ORDER BY COUNT(*) DESC;</code></pre></td></tr></tbody></table></div>
     <script src="../assets/js/isotope.pkgd.min.js"></script>
     <script src="../assets/js/wow.min.js"></script>
     <script src="../assets/js/script.js"></script>
-    <script src="../assets/js/enhance.js?v=3"></script>
+    <script src="../assets/js/enhance.js?v=4"></script>
 
 </body>
 
