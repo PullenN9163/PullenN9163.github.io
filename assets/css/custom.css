@@ -451,6 +451,15 @@
 .stat-row strong { display: block; font-size: 34px; line-height: 1.1; color: var(--np-accent); }
 .stat-row span { font-size: 14.5px; opacity: 0.75; }
 .project-figure img.project-video { background: #101010; }
+.project-figure video.project-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid var(--np-border);
+  background: #101010;
+}
+.project-details-content h4 { margin: 26px 0 10px; font-size: 19px; color: #fff; }
 @media (max-width: 767px) {
   .project-embed--tall { height: 70vh; min-height: 460px; }
   .project-embed--report { aspect-ratio: 3 / 4; }
