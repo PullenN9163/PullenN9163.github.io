@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Satisfactory Manager &mdash; Nasir Pullen</title>
+    <meta name="description" content="A factory-planning companion for Satisfactory 1.0: production-chain math, power and belt tiers, build tasks and Space Elevator tracking, with Google sign-in, cloud sync and an installable offline PWA.">
+    <meta name="author" content="Nasir Pullen">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Satisfactory Manager &mdash; Nasir Pullen">
+    <meta property="og:description" content="A factory-planning companion for Satisfactory 1.0: production-chain math, power and belt tiers, build tasks and Space Elevator tracking, with Google sign-in, cloud sync and an installable offline PWA.">
+    <meta property="og:url" content="https://PullenN9163.github.io/projects/satisfactory-manager.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Satisfactory Manager &mdash; Nasir Pullen">
+    <meta name="twitter:description" content="A factory-planning companion for Satisfactory 1.0: production-chain math, power and belt tiers, build tasks and Space Elevator tracking, with Google sign-in, cloud sync and an installable offline PWA.">
+
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../assets/css/flaticon.min.css">
+    <link rel="stylesheet" href="../assets/css/fontawesome-5.14.0.min.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/nice-select.min.css">
+    <link rel="stylesheet" href="../assets/css/animate.min.css">
+    <link rel="stylesheet" href="../assets/css/slick.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/custom.css?v=10">
+    <link rel="stylesheet" href="../assets/css/enhance.css?v=3">
+</head>
+
+<body>
+
+    <!-- header area -->
+    <header class="main-header menu-absolute">
+        <div class="header-upper">
+            <div class="container container-1620 clearfix">
+                <div class="header-inner rel d-flex align-items-center">
+                    <div class="logo-outer">
+                        <div class="logo"><a href="../index.html" class="site-wordmark">Nas<span>.</span></a></div>
+                    </div>
+                    <div class="nav-outer clearfix mx-auto">
+                        <nav class="main-menu navbar-expand-lg">
+                            <div class="navbar-header">
+                                <div class="mobile-logo my-15">
+                                    <a href="../index.html" class="site-wordmark">Nas<span>.</span></a>
+                                </div>
+                                <button type="button" class="navbar-toggle me-4" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+                            <div class="navbar-collapse collapse clearfix">
+                                <ul class="navigation clearfix">
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li class="current"><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="menu-btns">
+                        <a href="mailto:pullennasir@gmail.com" class="theme-btn header-cta">Get In Touch <i class="far fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header area end -->
+
+    <!-- Page Banner Start -->
+    <section class="page-banner-area pt-200 rpt-140 pb-100 rpb-60 rel z-1 text-center">
+        <div class="container">
+            <div class="banner-inner text-white">
+                <h1 class="page-title wow fadeInUp delay-0-2s">Satisfactory Manager</h1>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                        <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="../projects.html">Projects</a></li>
+                        <li class="breadcrumb-item active">Satisfactory Manager</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Page Banner End -->
+
+    <!-- Project Details start -->
+    <section class="projects-details-area pt-40 pb-130 rpb-100 rel z-1">
+        <div class="container">
+                <div class="projects-details-image mb-50 wow fadeInUp delay-0-2s">
+                    <img src="../assets/images/projects/satisfactory-hub.jpg" alt="Satisfactory Manager HUB on iPad: Phase 4 Propulsion at 14%, next objectives, empire totals of 3 factories, 266 buildings and 3.49 GW, and raw resource demand" class="project-hero-compact">
+                </div>
+            <div class="row gap-60">
+                <div class="col-lg-8">
+                    <div class="project-details-content wow fadeInUp delay-0-2s">
+                        <div class="project-eyebrow"><span class="sub-title">Full-Stack Web App</span><span class="status-label status-live">Live</span></div>
+                        <p class="big-letter">A factory-planning companion for the game Satisfactory: choose what to build and how fast, and it works out every machine, belt and ore node &mdash; then helps you track the build.</p>
+                        <p>Satisfactory Manager started in April 2026. The November rebuild turned it into a proper product: an iPad-first redesign, a planner rewritten for Satisfactory 1.0, Google sign-in with per-user cloud sync, and an installable offline app deployed on Firebase Hosting with automatic CI/CD. It is plain HTML, CSS and JavaScript &mdash; ES modules, no framework and no build step.</p>
+                        <h3>What changed in the rebuild</h3>
+                        <ul class="list-style-one">
+                            <li><span><strong>Before:</strong> a shared, unauthenticated database on GitHub Pages, pre-1.0 recipes, and a planner that mishandled byproducts.</span></li>
+                            <li><span><strong>After:</strong> about 100 Satisfactory 1.0 recipes, a rewritten planner with power and belt-tier maths, Google sign-in with private per-user data, offline-first sync, and a nav-rail layout for iPad landscape with a bottom tab bar in portrait.</span></li>
+                        </ul>
+                        <h3>Features</h3>
+                        <ul class="list-style-one">
+                            <li><span><strong>HUB</strong> &mdash; current Space Elevator phase with live progress, next objectives, recent factories, and empire-wide totals for buildings, power draw, open tasks and raw resource demand.</span></li>
+                            <li><span><strong>Recipe explorer</strong> &mdash; recipes with search, category, tier and standard/alternate filters, per-minute rates, favourites, and Plan straight from any recipe.</span></li>
+                            <li><span><strong>Factory planner</strong> &mdash; a bottom-up build list with machine count, clock %, power (using the in-game clock curve) and belt/pipe tier; alternate recipes per item; byproducts and belt-capacity warnings; a production tree and an interactive graph.</span></li>
+                            <li><span><strong>Build tasks</strong> &mdash; priorities, filters and progress, with one-tap generation of a checklist from a plan.</span></li>
+                            <li><span><strong>Project Assembly</strong> &mdash; all five Space Elevator phases, each objective with a one-tap factory suggestion.</span></li>
+                            <li><span><strong>Sync and offline</strong> &mdash; Google sign-in syncs factories, favourites and phase across iPad, phone and PC; the app also works offline as an installable PWA, with a local-only mode and JSON export/import.</span></li>
+                        </ul>
+                        <h3>How the planner works</h3>
+                        <p>The planner recursively follows every recipe needed to make your target item, down to raw resources. For each step it computes cycles per minute (60 &divide; craft time) and the machine count (target rate &divide; output per machine per minute), then repeats for every ingredient. Machines are split across whole buildings at an equal clock speed, and power uses the game&rsquo;s clock curve (power &prop; clock<sup>1.3219</sup>). The result feeds the build list, the graph and the generated tasks &mdash; all pure functions, so any change recalculates instantly.</p>
+                        <h3>See it in action</h3>
+                        <p>Recorded on my iPad against the live app, with my own factories and my own progress through the game.</p>
+                        <figure class="project-figure wow fadeInUp delay-0-2s"><video class="project-video" controls muted loop playsinline preload="metadata" poster="../assets/images/projects/satisfactory-factory-demo-poster.jpg" aria-label="Screen recording of a battery factory plan: build list, byproducts, production tree and interactive graph"><source src="../assets/images/projects/satisfactory-factory-demo.mp4" type="video/mp4"></video><figcaption><strong>Plan and graph</strong> &mdash; a 120/min battery factory: the bottom-up build list with belt and pipe warnings, the production tree, then the interactive graph.</figcaption></figure>
+                        <figure class="project-figure wow fadeInUp delay-0-2s"><video class="project-video" controls muted loop playsinline preload="metadata" poster="../assets/images/projects/satisfactory-recipes-demo-poster.jpg" aria-label="Screen recording of browsing and filtering the recipe explorer and opening a recipe"><source src="../assets/images/projects/satisfactory-recipes-demo.mp4" type="video/mp4"></video><figcaption><strong>Recipe explorer</strong> &mdash; browsing recipes by tier and category, and opening a recipe to see its inputs, outputs and per-minute rates.</figcaption></figure>
+                        <figure class="project-figure wow fadeInUp delay-0-2s"><video class="project-video" controls muted loop playsinline preload="metadata" poster="../assets/images/projects/satisfactory-phases-demo-poster.jpg" aria-label="Screen recording of Project Assembly: three completed phases and Phase 4 in progress"><source src="../assets/images/projects/satisfactory-phases-demo.mp4" type="video/mp4"></video><figcaption><strong>Project Assembly</strong> &mdash; the five Space Elevator phases: three complete, Phase 4 (Propulsion) in progress.</figcaption></figure>
+                        <h3>Screens</h3>
+                        <div class="row project-gallery mt-0">
+                            <div class="col-sm-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/satisfactory-plan.jpg" alt="Factory plan for a 120 per minute battery line with a belt and pipe warning and a bottom-up build list" loading="lazy"><figcaption><strong>Factory plan</strong> &mdash; 28 buildings, 831&nbsp;MW and a bottom-up build list, with a warning that water intake needs 2&times; Mk.2 pipes and a note on byproducts to handle.</figcaption></figure></div>
+                            <div class="col-sm-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/satisfactory-resources.jpg" alt="Raw resources, machine totals and byproducts for a battery factory" loading="lazy"><figcaption><strong>Resources, machines and byproducts</strong> &mdash; raw intake per minute with the belt tier it needs, machine totals with power, and the byproducts to handle.</figcaption></figure></div>
+                            <div class="col-sm-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/satisfactory-graph.jpg" alt="Interactive production graph of a battery factory" loading="lazy"><figcaption><strong>Graph</strong> &mdash; an interactive, zoomable production graph with the flow on every edge.</figcaption></figure></div>
+                            <div class="col-sm-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/satisfactory-tasks.jpg" alt="Build tasks screen with a Generate from plan button" loading="lazy"><figcaption><strong>Build tasks</strong> &mdash; priorities, filters and progress, with &ldquo;Generate from plan&rdquo; creating a checklist of every machine to place, node to tap and byproduct to handle.</figcaption></figure></div>
+                            <div class="col-sm-6"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/satisfactory-recipes.jpg" alt="Recipe explorer with search, tier and category filters and per-minute rates" loading="lazy"><figcaption><strong>Recipe explorer</strong> &mdash; search and filter Satisfactory 1.0 recipes, with per-minute rates and a one-tap Plan button.</figcaption></figure></div>
+                            <div class="col-sm-6"><figure class="project-figure wow fadeInUp delay-0-3s"><img src="../assets/images/projects/satisfactory-recipe.jpg" alt="Recipe detail for Quartz Crystal showing inputs, outputs, machine and a Plan button" loading="lazy"><figcaption><strong>Recipe detail</strong> &mdash; inputs, outputs and per-minute rates for a recipe, with one tap to plan a factory for it.</figcaption></figure></div>
+                            <div class="col-sm-6 offset-sm-3"><figure class="project-figure wow fadeInUp delay-0-2s"><img src="../assets/images/projects/satisfactory-phases.jpg" alt="Project Assembly with Phase 4 Propulsion in progress and its objectives" loading="lazy"><figcaption><strong>Project Assembly</strong> &mdash; Phase 4 in progress, with each objective one tap from a factory plan. Your phase decides which recipe tiers count as unlocked.</figcaption></figure></div>
+                        </div>
+                        <p class="mt-20">The layout adapts to the device: a navigation rail with a split view in landscape, and a bottom tab bar in portrait or on phones.</p>
+                        <h3>Difficulties and how I solved them</h3>
+                        <h4>1. The app silently stopped saving</h4>
+                        <p><strong>Problem.</strong> The first version wrote to a shared Firebase Realtime Database with no login. Test-mode rules like that expire after about 30 days &mdash; so one day the app showed &ldquo;Offline&rdquo; and could no longer save, with no explanation.</p>
+                        <p><strong>Solution.</strong> I rebuilt persistence around identity. Google sign-in gives every user private data under <code>/users/{uid}</code>, and new security rules enforce both ownership and the shape of the data (valid phase, bounded names, positive rates). Every write now surfaces failures as toasts, and a visible sync status distinguishes online, offline, denied and local. The store is offline-first &mdash; optimistic updates cached in local storage &mdash; and a one-time import brought the old shared factories across, remapping legacy recipe IDs.</p>
+                        <h4>2. Google sign-in on the iPad home screen</h4>
+                        <p><strong>Problem.</strong> Safari partitions storage for home-screen apps, so signing in through a cross-origin auth domain (the Firebase handler on a different host from the app) could fail on the very device the app was designed for. Popups also open outside a home-screen app and can&rsquo;t report back.</p>
+                        <p><strong>Solution.</strong> I moved hosting to Firebase Hosting, where the auth handler lives at <code>/__/auth</code> on the app&rsquo;s own origin, making sign-in same-origin. In home-screen mode the app uses a redirect flow instead of a popup and reports redirect errors as toasts, and the service worker never intercepts Firebase&rsquo;s reserved <code>/__/</code> paths.</p>
+                        <h4>3. &ldquo;Error 400: redirect_uri_mismatch&rdquo;</h4>
+                        <p><strong>Problem.</strong> After the move, sign-in failed outright. Using the <code>web.app</code> host as the auth domain sent Google a redirect URI that the auto-created OAuth client doesn&rsquo;t allow.</p>
+                        <p><strong>Solution.</strong> I traced it to the OAuth client&rsquo;s allowed redirect list and made the <code>firebaseapp.com</code> host canonical: it is always the auth domain (its handler is already in the client&rsquo;s default list, so no Google Cloud Console changes), and the app is served from that same host so sign-in stays same-origin. Browser tabs on <code>web.app</code> are forwarded there, preserving path and hash, while home-screen installs see a hint instead of a redirect.</p>
+                        <h4>4. A planner that treated byproducts as producers</h4>
+                        <p><strong>Problem.</strong> Early plans were subtly wrong: because recipes were matched by any output, the planner could resolve an item through a recipe that only produces it as a byproduct &mdash; for example, Water from Aluminum Scrap.</p>
+                        <p><strong>Solution.</strong> I changed the data model so every recipe has one explicit product and a separate list of byproducts. The planner only chooses recipes whose product is the item it needs, and byproducts are totalled and surfaced as warnings (&ldquo;Byproducts to handle&hellip;&rdquo;) instead of being silently used as inputs.</p>
+                        <h3>What building it taught me</h3>
+                        <h4>Cloud</h4>
+                        <ul class="list-style-one"><li>Firebase end to end: Authentication with Google sign-in, per-user Realtime Database with validated security rules, and Hosting with tuned cache headers.</li><li>Debugging OAuth in Google Cloud: how auth domains, redirect URIs and same-origin policy interact, especially on iOS home-screen apps.</li><li>CI/CD with GitHub Actions: every push to <code>main</code> deploys live and every pull request gets a 7-day preview channel, using a dedicated Firebase Hosting service account &mdash; and the workflow skips cleanly, rather than failing, until the secret exists.</li></ul>
+                        <h4>AI-assisted engineering</h4>
+                        <ul class="list-style-one"><li>Built the rebuild as three reviewed pull requests with an AI coding agent, writing each commit message around <em>why</em> the change was needed so the history explains the failures behind it.</li><li>Kept the human in charge of the product: I set the scope, reviewed each pull request, and diagnosed the real-world failures (expired rules, sign-in errors) that drove the next change.</li></ul>
+                        <h4>System design</h4>
+                        <ul class="list-style-one"><li>Offline-first architecture: a single store with optimistic updates, a local cache, an explicit sync-state machine, and a lazily loaded Firebase SDK so the app still boots when the network doesn&rsquo;t.</li><li>A pure, framework-free planner that separates the calculation from the UI, so the same results drive the build list, graph and generated tasks.</li><li>A deliberately dependency-light stack &mdash; no framework and no build step &mdash; that keeps the app fast, easy to deploy and easy to reason about.</li></ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow fadeInUp delay-0-4s">
+                    <div class="project-details-info rmb-55">
+                            <div class="pd-info-item">
+                                <span>Role</span>
+                                <h5>Designer &amp; sole developer</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Type</span>
+                                <h5>Installable web app (iPad, phone &amp; PC)</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Timeline</span>
+                                <h5>Apr 2026 &middot; rebuilt Nov 2026</h5>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Status</span>
+                                <h5><span class="status-label status-live">Live</span></h5>
+                            </div>
+                            <div class="pd-info-item"><span>Built With</span><div class="tech-tags"><span>JavaScript (ES modules)</span><span>HTML</span><span>CSS</span><span>Firebase Auth</span><span>Realtime Database</span><span>Firebase Hosting</span><span>GitHub Actions</span><span>vis-network</span><span>PWA</span></div></div>
+                            <div class="pd-info-item">
+                                <span>Live app</span>
+                                <a href="https://satisfactory-manager-c75e7.firebaseapp.com/" class="read-more" target="_blank" rel="noopener">Open Satisfactory Manager <i class="far fa-angle-right"></i></a>
+                            </div>
+                            <div class="pd-info-item">
+                                <span>Source</span>
+                                <a href="https://github.com/PullenN9163/satisfactory-manager" class="read-more repo-link" target="_blank" rel="noopener">View GitHub repository <i class="fab fa-github"></i></a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-nav mt-70">
+                <a href="scentiq.html" class="read-more"><i class="far fa-angle-left"></i> ScentIQ</a>
+                <a href="../projects.html" class="read-more">All projects</a>
+                <a href="ai200-study-hub.html" class="read-more">AI-200 Study Hub <i class="far fa-angle-right"></i></a>
+            </div>
+        </div>
+        <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    </section>
+    <!-- Project Details end -->
+
+    <!-- footer area start -->
+    <footer class="main-footer rel z-1">
+        <div class="footer-top-wrap bgc-black pt-100 pb-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-md-12">
+                        <div class="footer-widget widget_about wow fadeInUp delay-0-2s">
+                            <a href="../index.html" class="site-wordmark footer-wordmark">Nas<span>.</span></a>
+                            <p class="mt-20">Data analyst building governed data products, backend systems, automation, and Azure infrastructure.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="footer-widget widget_nav_menu wow fadeInUp delay-0-4s">
+                            <h6 class="footer-title">Explore</h6>
+                            <ul>
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../about.html">About</a></li>
+                                <li><a href="../projects.html">Projects</a></li>
+                                <li><a href="../index.html#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-widget widget_contact_info wow fadeInUp delay-0-6s">
+                            <h6 class="footer-title">Get In Touch</h6>
+                            <ul>
+                                <li><i class="far fa-map-marker-alt"></i> Philadelphia, PA</li>
+                                <li><i class="far fa-envelope"></i> <a href="mailto:pullennasir@gmail.com">pullennasir@gmail.com</a></li>
+                                <li><i class="far fa-phone"></i> <a href="tel:+16092842409">609-284-2409</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom pt-20 pb-5 rpt-25">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="copyright-text">
+                            <p>&copy; 2026 Nasir Pullen. Built and maintained by me.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <ul class="footer-bottom-nav">
+                            <li><a href="https://www.linkedin.com/in/naspullen" target="_blank" rel="noopener">LinkedIn</a></li>
+                            <li><a href="https://github.com/PullenN9163" target="_blank" rel="noopener">GitHub</a></li>
+                            <li><a href="mailto:pullennasir@gmail.com">Email</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="scroll-top scroll-to-target" data-target="html"><span class="fas fa-angle-double-up"></span></button>
+            </div>
+            <div class="bg-lines"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+    </footer>
+    <!-- footer area end -->
+
+    <!-- Preloader -->
+    <div class="preloader"><div class="custom-loader"></div></div>
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/appear.min.js"></script>
+    <script src="../assets/js/slick.min.js"></script>
+    <script src="../assets/js/jquery.nice-select.min.js"></script>
+    <script src="../assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="../assets/js/isotope.pkgd.min.js"></script>
+    <script src="../assets/js/wow.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/enhance.js?v=4"></script>
+
+</body>
+
+</html>
