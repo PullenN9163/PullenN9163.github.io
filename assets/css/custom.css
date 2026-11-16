@@ -541,3 +541,4 @@
 
 .project-figure--portrait { max-width: 420px; margin-left: auto; margin-right: auto; text-align: center; }
 .projects-details-image img.project-hero-portrait { max-width: 560px; margin: 0 auto; display: block; }
+.projects-details-image img.project-hero-compact { max-width: 780px; margin: 0 auto; display: block; }
